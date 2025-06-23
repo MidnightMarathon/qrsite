@@ -1,28 +1,28 @@
-const input = document.getElementById("qr-input");
-const generateBtn = document.getElementById("generate-btn");
-const qrContainer = document.getElementById("qr-code");
-const downloadLink = document.getElementById("download-link");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JustQR – Free QR Code Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <h1>JustQR</h1>
+    <p>No watermark. No paywall. Just QR codes.</p>
+    
+    <input type="text" id="qr-input" placeholder="Enter URL or text…" />
+    <button id="generate-btn">Generate QR</button>
 
-generateBtn.addEventListener("click", () => {
-  const text = input.value.trim();
-  if (!text) return;
+    <div id="qr-code"></div>
+    <a id="download-link" style="display:none;" download="qr-code.png">Download PNG</a>
+  </main>
 
-  // Clear old QR
-  qrContainer.innerHTML = "";
-  downloadLink.style.display = "none";
+  <!-- ✅ Load QRCode library from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
 
-  const qr = new QRCode(qrContainer, {
-    text,
-    width: 256,
-    height: 256,
-    correctLevel: QRCode.CorrectLevel.H,
-  });
+  <!-- ✅ Your own logic -->
+  <script src="script.js"></script>
+</body>
+</html>
 
-  setTimeout(() => {
-    const img = qrContainer.querySelector("img");
-    if (img) {
-      downloadLink.href = img.src;
-      downloadLink.style.display = "inline-block";
-    }
-  }, 100); // QRCode rendering delay
-});
