@@ -1,1 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JustQR – Free QR Code Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <h1>JustQR</h1>
+    <p>No watermark. No paywall. Just QR codes.</p>
+    
+    <input type="text" id="qr-input" placeholder="Enter URL or text…" />
+    <button id="generate-btn">Generate QR</button>
+
+    <div id="qr-code"></div>
+    <a id="download-link" style="display:none;" download="qr-code.png">Download PNG</a>
+  </main>
+
+  <script src="assets/qrcode.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
 
