@@ -32,16 +32,17 @@ button {
 
 #qr-code {
   margin: 2rem 0;
-  display: block;      /* Change from flex to block */
-  text-align: center;  /* Center the canvas inside */
-  overflow: visible;   /* Make sure nothing is cut off */
+  text-align: center;
 }
 
+/* Scale down visually to fit container width */
 #qr-code canvas {
-  max-width: 100%;
-  height: auto;
-  display: inline-block;  /* So it respects text-align center */
+  max-width: 300px;   /* or whatever smaller size you want */
+  width: 100%;        /* responsive */
+  height: auto;       /* keep aspect ratio */
+  display: inline-block;
 }
+
 
 
 a#download-link {
