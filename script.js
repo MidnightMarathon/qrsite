@@ -27,6 +27,14 @@ window.addEventListener("load", () => {
 
   qrCode.append(qrContainer);
 
+  // Add https:// if the input doesn't already include http or https
+  function fixUrl(url) {
+    if (!/^https?:\/\//i.test(url)) {
+      return "https://" + url;
+    }
+    return url;
+  }
+
   // Validate URL format (simple check)
   function isValidUrl(string) {
     try {
@@ -55,7 +63,7 @@ window.addEventListener("load", () => {
   }
 
   generateBtn.addEventListener("click", () => {
-    const text = input.value.trim();
+    let text = fixUrl(input.value.trim());
 
     errorMsg.style.display = "none";
     downloadControls.style.display = "none";
@@ -71,14 +79,12 @@ window.addEventListener("load", () => {
     qrWrapper.style.display = "block";
     downloadControls.style.display = "flex";
 
-    // Update download link filename on format or url change
     const filename = extractFilename(text);
     downloadLink.setAttribute("download", filename + "." + formatSelect.value);
   });
 
-  // Update filename extension on format change
   formatSelect.addEventListener("change", () => {
-    const text = input.value.trim();
+    let text = fixUrl(input.value.trim());
     if (!isValidUrl(text)) return;
 
     const filename = extractFilename(text);
@@ -86,7 +92,7 @@ window.addEventListener("load", () => {
   });
 
   downloadLink.addEventListener("click", (e) => {
-    const text = input.value.trim();
+    let text = fixUrl(input.value.trim());
     if (!isValidUrl(text)) {
       e.preventDefault();
       errorMsg.textContent = "Please enter a valid URL before downloading.";
@@ -95,7 +101,6 @@ window.addEventListener("load", () => {
     }
 
     const format = formatSelect.value;
-    // Trigger download with selected format and filename
     qrCode.download({ extension: format });
   });
 });
