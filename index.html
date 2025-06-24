@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>JustQR – Free QR Code Generator</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -11,23 +11,24 @@
     <h1>JustQR</h1>
     <p>No watermark. No paywall. Just QR codes.</p>
 
-    <input type="text" id="qr-input" placeholder="Enter URL or text…" />
-    <div id="error-message" style="display:none;"></div>
+    <input type="text" id="qr-input" placeholder="Enter a valid URL (e.g. https://example.com)" />
     <button id="generate-btn">Generate QR</button>
 
-    <div id="qr-wrapper">
+    <div id="qr-wrapper" style="display:none;">
       <div id="qr-code"></div>
-
-      <div id="download-controls" style="display: none;">
-        <label for="format-select">Download format:</label>
-        <select id="format-select">
-          <option value="png">PNG</option>
-          <option value="svg">SVG</option>
-          <option value="jpeg">JPEG</option>
-        </select>
-        <a id="download-link" href="#" download>Download</a>
-      </div>
     </div>
+
+    <div id="download-controls" style="display: none;">
+      <label for="format-select">Download format:</label>
+      <select id="format-select">
+        <option value="png">PNG</option>
+        <option value="svg">SVG</option>
+        <option value="jpeg">JPEG</option>
+      </select>
+      <a id="download-link" href="#">Download</a>
+    </div>
+
+    <p id="error-msg" class="error-message" style="display:none;"></p>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
