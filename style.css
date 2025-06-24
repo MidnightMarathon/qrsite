@@ -1,95 +1,57 @@
-/* Basic page styling */
-body {
-  font-family: system-ui, sans-serif;
-  text-align: center;
-  padding: 2rem;
-  background: #f9f9f9;
-  color: #333;
-  margin: 0;
-}
+window.addEventListener("load", () => {
+  // Small visible QR code
+  const qrCode = new QRCodeStyling({
+    width: 150,
+    height: 150,
+    type: "png",
+    data: "",
+    dotsOptions: { color: "#000000", type: "square" },
+    backgroundOptions: { color: "#ffffff" },
+    qrOptions: { errorCorrectionLevel: "H" }
+  });
 
-/* Main container */
-main {
-  max-width: 400px;
-  margin: auto;
-  padding: 0 1rem;
-}
+  // Hidden high-res QR code for download
+  const qrCodeHighRes = new QRCodeStyling({
+    width: 480,
+    height: 480,
+    type: "png",
+    data: "",
+    dotsOptions: { color: "#000000", type: "square" },
+    backgroundOptions: { color: "#ffffff" },
+    qrOptions: { errorCorrectionLevel: "H" }
+  });
 
-/* Input styling */
-input#qr-input {
-  width: 100%;
-  padding: 0.75rem;
-  font-size: 1rem;
-  margin: 1rem 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
+  const input = document.getElementById("qr-input");
+  const generateBtn = document.getElementById("generate-btn");
+  const qrContainer = document.getElementById("qr-code");
+  const downloadLink = document.getElementById("download-link");
+  const formatSelect = document.getElementById("format-select");
+  const downloadControls = document.getElementById("download-controls");
 
-/* Generate button styling */
-button#generate-btn {
-  padding: 0.75rem 1.25rem;
-  font-size: 1rem;
-  background: #2d9cdb;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
+  qrCode.append(qrContainer);
 
-/* Wrapper for QR code and download controls */
-#qr-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 2rem;
-}
+  generateBtn.addEventListener("click", () => {
+    const text = input.value.trim();
+    if (!text) return;
 
-/* QR code container — fixed size and centered */
-#qr-code {
-  width: 150px;
-  height: 150px;
-  max-width: 100%;
-  max-height: 150px;
-  box-sizing: border-box;
-  text-align: center;
-}
+    // Update both QR codes with the same data
+    qrCode.update({ data: text });
+    qrCodeHighRes.update({ data: text });
 
-/* Canvas scales to container size without distortion */
-#qr-code canvas {
-  width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
+    downloadControls.style.display = "flex";
+  });
 
-/* Download controls container */
-#download-controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-}
+  downloadLink.addEventListener("click", () => {
+    const format = formatSelect.value;
 
-/* Download link styling */
-a#download-link {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background: #27ae60;
-  color: white;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 0; /* spacing handled by #qr-wrapper gap */
-}
+    const raw = input.value.trim().toLowerCase();
+    const filename = (raw.split('.')[0] || 'qr-code')
+      .replace(/[^a-z0-9]/g, '_')
+      .slice(0, 50);
 
-/* Dropdown styling */
-#format-select {
-  padding: 0.5rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  cursor: pointer;
-}
+    qrCodeHighRes.download({
+      extension: format,
+      name: filename
+    });
+  });
+});
