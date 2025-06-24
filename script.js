@@ -30,7 +30,11 @@ window.addEventListener("load", () => {
     if (!text) return;
 
     qrCode.update({ data: text });
-    downloadControls.style.display = "flex";
+
+    // Wait a short moment to ensure rendering is complete
+    setTimeout(() => {
+      downloadControls.style.display = "flex";
+    }, 200);
   });
 
   downloadLink.addEventListener("click", async () => {
@@ -38,8 +42,6 @@ window.addEventListener("load", () => {
 
     if (format === "pdf") {
       const { jsPDF } = window.jspdf;
-
-      // Get canvas from the QR code container
       const canvas = qrContainer.querySelector("canvas");
       if (!canvas) return alert("QR code not generated yet.");
 
@@ -58,4 +60,3 @@ window.addEventListener("load", () => {
     }
   });
 });
-
