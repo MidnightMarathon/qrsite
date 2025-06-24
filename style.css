@@ -60,16 +60,19 @@ button#generate-btn:hover {
 
 #qr-code {
   width: 120px;
-  max-width: 100%;
+  height: 120px;
   margin: 2rem auto;
   overflow: hidden;
 }
 
 #qr-code canvas {
-  width: 100% !important;
-  height: auto !important;
-  max-width: 100%;
+  width: 1080px !important;
+  height: 1080px !important;
   display: block;
+  transform: scale(0.111);
+  transform-origin: top left;
+}
+ display: block;
   transform: scale(0.11); /* scales 1080px down to about 120px */
   transform-origin: top left;
 }
