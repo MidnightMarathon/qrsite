@@ -37,20 +37,25 @@ window.addEventListener("load", () => {
     const format = formatSelect.value;
 
     if (format === "pdf") {
-      const dataUrl = await qrCode.getRawData("png");
-
       const { jsPDF } = window.jspdf;
+
+      // Get canvas from the QR code container
+      const canvas = qrContainer.querySelector("canvas");
+      if (!canvas) return alert("QR code not generated yet.");
+
+      const imageData = canvas.toDataURL("image/png");
+
       const pdf = new jsPDF({
         orientation: "portrait",
-        unit: "px",
+        unit: "pt",
         format: [1024, 1024]
       });
 
-      pdf.addImage(dataUrl, "PNG", 0, 0, 1024, 1024);
+      pdf.addImage(imageData, "PNG", 0, 0, 1024, 1024);
       pdf.save("qr-code.pdf");
-
     } else {
       qrCode.download({ extension: format });
     }
   });
 });
+
