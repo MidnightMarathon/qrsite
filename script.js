@@ -37,14 +37,6 @@ window.addEventListener("load", () => {
     }
   }
 
-  // Add protocol if missing
-  function ensureProtocol(url) {
-    if (!url.startsWith("http://") && !url.startsWith("https://")) {
-      return "https://" + url;
-    }
-    return url;
-  }
-
   // Extract domain name for filename
   function extractFilename(url) {
     try {
@@ -63,13 +55,11 @@ window.addEventListener("load", () => {
   }
 
   generateBtn.addEventListener("click", () => {
-    let text = input.value.trim();
+    const text = input.value.trim();
 
     errorMsg.style.display = "none";
     downloadControls.style.display = "none";
     qrWrapper.style.display = "none";
-
-    text = ensureProtocol(text);
 
     if (!isValidUrl(text)) {
       errorMsg.textContent = "Please enter a valid URL starting with http:// or https://";
@@ -78,17 +68,17 @@ window.addEventListener("load", () => {
     }
 
     qrCode.update({ data: text });
-    qrWrapper.style.display = "block";
+    qrWrapper.style.display = "flex";
     downloadControls.style.display = "flex";
 
+    // Update download link filename on format or url change
     const filename = extractFilename(text);
     downloadLink.setAttribute("download", filename + "." + formatSelect.value);
   });
 
+  // Update filename extension on format change
   formatSelect.addEventListener("change", () => {
-    let text = input.value.trim();
-    text = ensureProtocol(text);
-
+    const text = input.value.trim();
     if (!isValidUrl(text)) return;
 
     const filename = extractFilename(text);
@@ -96,9 +86,7 @@ window.addEventListener("load", () => {
   });
 
   downloadLink.addEventListener("click", (e) => {
-    let text = input.value.trim();
-    text = ensureProtocol(text);
-
+    const text = input.value.trim();
     if (!isValidUrl(text)) {
       e.preventDefault();
       errorMsg.textContent = "Please enter a valid URL before downloading.";
@@ -107,6 +95,7 @@ window.addEventListener("load", () => {
     }
 
     const format = formatSelect.value;
+    // Trigger download with selected format and filename
     qrCode.download({ extension: format });
   });
 });
