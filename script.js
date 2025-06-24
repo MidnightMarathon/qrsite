@@ -12,8 +12,8 @@ window.addEventListener("load", () => {
 
   // Hidden high-res QR code for download
   const qrCodeHighRes = new QRCodeStyling({
-    width: 1080,
-    height: 1080,
+    width: 480,
+    height: 480,
     type: "png",
     data: "",
     dotsOptions: { color: "#000000", type: "square" },
@@ -43,6 +43,17 @@ window.addEventListener("load", () => {
 
   downloadLink.addEventListener("click", () => {
     const format = formatSelect.value;
-    qrCodeHighRes.download({ extension: format });
+
+    // Sanitize input text to create a safe filename
+    const filename = input.value.trim()
+      .replace(/[^a-z0-9]/gi, '_')  // replace non-alphanumeric with underscore
+      .toLowerCase()
+      .slice(0, 50) || 'qr-code';  // limit length, fallback if empty
+
+    qrCodeHighRes.download({
+      extension: format,
+      name: filename
+    });
   });
 });
+
