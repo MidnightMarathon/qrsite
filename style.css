@@ -68,8 +68,12 @@ button#generate-btn:hover {
 #qr-code canvas {
   width: 100% !important;
   height: auto !important;
+  max-width: 100%;
   display: block;
+  transform: scale(0.11); /* scales 1080px down to about 120px */
+  transform-origin: top left;
 }
+
 
 /* Download controls */
 #download-controls {
