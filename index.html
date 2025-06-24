@@ -14,16 +14,18 @@
     <input type="text" id="qr-input" placeholder="Enter URL or text…" />
     <button id="generate-btn">Generate QR</button>
 
-    <div id="qr-code"></div>
+    <div id="qr-wrapper">
+      <div id="qr-code"></div>
 
-    <div id="download-controls" style="display: none;">
-      <label for="format-select">Download format:</label>
-      <select id="format-select">
-        <option value="png">PNG</option>
-        <option value="svg">SVG</option>
-        <option value="jpeg">JPEG</option>
-      </select>
-      <a id="download-link">Download</a>
+      <div id="download-controls" style="display: none;">
+        <label for="format-select">Download format:</label>
+        <select id="format-select">
+          <option value="png">PNG</option>
+          <option value="svg">SVG</option>
+          <option value="jpeg">JPEG</option>
+        </select>
+        <a id="download-link">Download</a>
+      </div>
     </div>
   </main>
 
@@ -31,5 +33,6 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
