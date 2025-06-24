@@ -66,15 +66,17 @@ button#generate-btn:hover {
 }
 
 #qr-code canvas {
-  width: 160px !important;
-  height: 160px !important;
-  display: block;
-  transform: scale(0.111);
-  transform-origin: top left;
-}
- display: block;
-  transform: scale(0.11); /* scales 1080px down to about 120px */
-  transform-origin: top left;
+  /*
+   * Remove fixed width/height and the transform.
+   * Instead, make the canvas fill its parent (#qr-code)
+   * while maintaining its aspect ratio.
+   */
+  max-width: 100%;
+  max-height: 100%;
+  width: auto; /* Allow width to adjust based on height and aspect ratio */
+  height: auto; /* Allow height to adjust based on width and aspect ratio */
+  display: block; /* Ensure it behaves as a block element */
+  object-fit: contain; /* Scales the content to fit within the parent, maintaining aspect ratio */
 }
 
 
