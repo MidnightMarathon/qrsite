@@ -1,160 +1,109 @@
+/* Basic page styling */
 body {
-  font-family: 'Inter', system-ui, sans-serif;
-  text-align: center;
-  padding: 2rem;
-  background: #f0f2f5; /* Softer than #f9f9f9 */
-  color: #222; /* Darker text for better readability */
-  margin: 0;
+font-family: system-ui, sans-serif;
+text-align: center;
+@@ -8,14 +7,11 @@ body {
+margin: 0;
 }
 
+/* Main container */
 main {
-  max-width: 400px;
-  margin: auto;
-  background: #fff;
-  padding: 2rem 2.5rem;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+max-width: 400px;
+margin: auto;
+  padding: 0 1rem;
 }
 
-/* Input style */
+/* Input styling */
 input#qr-input {
-  width: 100%;
-  padding: 0.85rem 1rem;
-  font-size: 1.1rem;
-  margin: 1rem 0 1.5rem;
-  border-radius: 12px;
-  border: 1.5px solid #ccc;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease;
+width: 100%;
+padding: 0.75rem;
+@@ -26,7 +22,6 @@ input#qr-input {
+box-sizing: border-box;
 }
 
-input#qr-input:focus {
-  border-color: #2d9cdb;
-  outline: none;
-  box-shadow: 0 0 6px #2d9cdbaa;
-}
-
-/* Generate button */
+/* Generate button styling */
 button#generate-btn {
-  padding: 0.85rem 1.75rem;
-  font-size: 1.1rem;
-  background: #2d9cdb;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  font-weight: 600;
-  box-shadow: 0 4px 14px #2d9cdbaa;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+padding: 0.75rem 1.25rem;
+font-size: 1rem;
+@@ -37,42 +32,47 @@ button#generate-btn {
+cursor: pointer;
 }
 
-button#generate-btn:hover {
-  background: #2382c9;
-  box-shadow: 0 6px 20px #2382c9cc;
-}
-
-button#generate-btn:active {
-  background: #1c5d86;
-  box-shadow: none;
-}
-
-/* Error message */
+/* Wrapper for QR code and download controls */
 #error-msg {
   color: #d32f2f;
   margin-top: 1rem;
-  font-weight: 700;
-  font-size: 1rem;
-  min-height: 1.4em; /* Reserve space to avoid layout shift */
+  font-weight: bold;
 }
 
-/* QR code wrapper with subtle shadow */
 #qr-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
   width: 160px;
   height: 160px;
   margin: 2rem auto 1rem;
-  /* Instead of scale(0.14), size directly set in #qr-code */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  border-radius: 16px;
-  overflow: hidden;
+  transform: scale(0.14);
+  transform-origin: top left;
 }
 
-/* QR code container, should be exactly the size you want */
+/* QR code container — fixed size and centered */
 #qr-code {
-  width: 160px; /* Match #qr-wrapper */
-  height: 160px;
-  display: block;
+  width: 150px;
+  height: 150px;
+  max-width: 100%;
+  max-height: 150px;
+  box-sizing: border-box;
+  text-align: center;
+  width: 1080px;
+  height: 1080px;
 }
 
-/* Ensure canvas or svg inside QR code container fits perfectly */
+/* Canvas scales to container size without distortion */
+#qr-code canvas {
 #qr-code canvas, #qr-code svg {
-  width: 100% !important;
-  height: 100% !important;
-  display: block;
+width: 100%;
+  height: auto;
+  height: 100%;
+display: block;
+  margin: 0 auto;
 }
 
 /* Download controls container */
 #download-controls {
-  margin-top: 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.75rem;
+  margin-top: 1rem;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 0.5rem;
 }
 
-/* Format selector */
+/* Download link styling */
 #format-select {
-  padding: 0.5rem 0.8rem;
-  border-radius: 12px;
-  border: 1.5px solid #ccc;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
   font-size: 1rem;
   cursor: pointer;
-  transition: border-color 0.3s ease;
 }
 
-#format-select:hover, #format-select:focus {
-  border-color: #2d9cdb;
-  outline: none;
-  box-shadow: 0 0 8px #2d9cdbaa;
-}
-
-/* Download link */
 a#download-link {
-  display: inline-block;
-  padding: 0.6rem 1.4rem;
-  background: #27ae60;
-  color: white;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: 700;
+display: inline-block;
+padding: 0.5rem 1rem;
+@@ -82,14 +82,4 @@ a#download-link {
+text-decoration: none;
+font-weight: bold;
+cursor: pointer;
+  margin-top: 0; /* spacing handled by #qr-wrapper gap */
+}
+
+/* Dropdown styling */
+#format-select {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
   cursor: pointer;
-  box-shadow: 0 4px 14px #27ae60aa;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-a#download-link:hover {
-  background: #219150;
-  box-shadow: 0 6px 22px #219150cc;
-}
-
-a#download-link:active {
-  background: #176934;
-  box-shadow: none;
-}
-
-/* Responsive tweaks */
-@media (max-width: 420px) {
-  main {
-    padding: 1.5rem 1.75rem;
-    margin: 1rem;
-  }
-
-  #qr-wrapper {
-    width: 140px;
-    height: 140px;
-  }
-
-  #qr-code {
-    width: 140px;
-    height: 140px;
-  }
 }
