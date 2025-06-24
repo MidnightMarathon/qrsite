@@ -12,7 +12,7 @@ body {
 main {
   max-width: 400px;
   margin: auto;
-  padding: 0 1rem; /* small horizontal padding for small screens */
+  padding: 0 1rem;
 }
 
 /* Input styling */
@@ -37,17 +37,15 @@ button#generate-btn {
   cursor: pointer;
 }
 
-/* QR code container */
+/* QR code container — controls visual size */
 #qr-code {
   margin: 2rem auto;
   width: 150px;
   height: 150px;
-  position: relative;
-  z-index: 1;
   text-align: center;
 }
 
-/* QR code canvas fills container */
+/* Canvas scales to container size */
 #qr-code canvas {
   width: 100% !important;
   height: 100% !important;
@@ -64,13 +62,12 @@ a#download-link {
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
+  margin-top: 1rem;
 }
 
 /* Download controls container */
 #download-controls {
-  margin-top: 2.5rem;
-  position: relative;
-  z-index: 2;
+  margin-top: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
