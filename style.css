@@ -43,3 +43,18 @@ a#download-link {
   text-decoration: none;
   font-weight: bold;
 }
+#download-controls {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#format-select {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
