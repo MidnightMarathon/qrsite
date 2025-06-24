@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("load", () => {
   const qrCode = new QRCodeStyling({
     width: 1024,
     height: 1024,
@@ -6,10 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
     data: "",
     dotsOptions: {
       color: "#000000",
-      type: "square",
+      type: "square"
     },
     backgroundOptions: {
-      color: "#ffffff",
+      color: "#ffffff"
     },
     qrOptions: {
       errorCorrectionLevel: "H"
