@@ -68,7 +68,7 @@ button#generate-btn:hover {
 }
 
 #qr-code canvas {
-  width: 100% !important;
+  width: 15% !important;
   height: auto !important;
   display: block;
   max-width: 100%;
