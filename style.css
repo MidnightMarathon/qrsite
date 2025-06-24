@@ -15,7 +15,7 @@ main.card {
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
-  max-width: 160px;
+  max-width: 480px;
   width: 100%;
   text-align: center;
 }
@@ -59,7 +59,7 @@ button#generate-btn:hover {
 }
 
 #qr-code {
-  width: 200px;
+  width: 120px;
   margin: 0 auto;
 }
 
