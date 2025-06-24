@@ -33,14 +33,16 @@ button {
 #qr-code {
   margin: 2rem 0;
   text-align: center;
+  width: 100px; /* set container width you want */
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Scale down visually to fit container width */
 #qr-code canvas {
-  max-width: 100px;   /* or whatever smaller size you want */
-  width: 100%;        /* responsive */
-  height: auto;       /* keep aspect ratio */
+  width: 100%;  /* fill container width */
+  height: auto; /* keep aspect ratio */
   display: inline-block;
+}
 }
 
 
