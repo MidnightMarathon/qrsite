@@ -39,8 +39,8 @@ button#generate-btn {
 }
 
 #qr-wrapper {
-  width: 120px;
-  height: 120px;
+  width: 160px;
+  height: 160px;
   margin: 2rem auto 1rem;
   transform: scale(0.14);
   transform-origin: top left;
