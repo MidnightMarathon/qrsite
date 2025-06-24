@@ -1,7 +1,7 @@
 window.addEventListener("load", () => {
   const qrCode = new QRCodeStyling({
-    width: 480,
-    height: 480,
+    width: 150,      // match CSS container size
+    height: 150,
     type: "png",
     data: "",
     dotsOptions: {
@@ -38,3 +38,4 @@ window.addEventListener("load", () => {
     qrCode.download({ extension: format });
   });
 });
+
