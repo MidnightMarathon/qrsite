@@ -1,27 +1,38 @@
+const qrCode = new QRCodeStyling({
+  width: 1024,
+  height: 1024,
+  type: "png",
+  data: "",
+  dotsOptions: {
+    color: "#000000",
+    type: "square",
+  },
+  backgroundOptions: {
+    color: "#ffffff",
+  },
+  qrOptions: {
+    errorCorrectionLevel: "H"
+  }
+});
+
 const input = document.getElementById("qr-input");
 const generateBtn = document.getElementById("generate-btn");
 const qrContainer = document.getElementById("qr-code");
 const downloadLink = document.getElementById("download-link");
+const formatSelect = document.getElementById("format-select");
+const downloadControls = document.getElementById("download-controls");
+
+qrCode.append(qrContainer);
 
 generateBtn.addEventListener("click", () => {
   const text = input.value.trim();
   if (!text) return;
 
-  qrContainer.innerHTML = "";
-  downloadLink.style.display = "none";
+  qrCode.update({ data: text });
+  downloadControls.style.display = "block";
+});
 
-  const qr = new QRCode(qrContainer, {
-    text,
-    width: 256,
-    height: 256,
-    correctLevel: QRCode.CorrectLevel.H
-  });
-
-  setTimeout(() => {
-    const img = qrContainer.querySelector("img");
-    if (img) {
-      downloadLink.href = img.src;
-      downloadLink.style.display = "inline-block";
-    }
-  }, 100);
+downloadLink.addEventListener("click", () => {
+  const format = formatSelect.value;
+  qrCode.download({ extension: format });
 });
