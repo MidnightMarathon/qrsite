@@ -3,13 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>JustQR – Free QR Code Generator</title>
+
+  <title>Free QR Code Generator – No Watermark | JustQR</title>
+  <meta name="description" content="Generate high-quality QR codes for any link. 100% free, no watermark, no signup. Download your QR in PNG, SVG, or JPEG format instantly.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Free QR Code Generator – No Watermark | JustQR" />
+  <meta property="og:description" content="Create and download QR codes instantly. No watermark. Always free." />
+  <meta property="og:image" content="https://www.openqrgenerator.com/og-image.png" />
+  <meta property="og:url" content="https://www.openqrgenerator.com/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Free QR Code Generator – JustQR" />
+  <meta name="twitter:description" content="Generate free QR codes with no watermark. Download in PNG, SVG, or JPEG." />
+  <meta name="twitter:image" content="https://www.openqrgenerator.com/og-image.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" />
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <main>
-    <h1>JustQR</h1>
-    <p>No watermark. No paywall. Just QR codes.</p>
+    <h1>Free QR Code Generator – JustQR</h1>
+    <p>Create QR codes instantly. No watermark. No paywall. No signup required.</p>
 
     <input type="text" id="qr-input" placeholder="Enter a valid URL (e.g. https://example.com)" />
     <button id="generate-btn">Generate QR</button>
@@ -29,6 +48,10 @@
     </div>
 
     <p id="error-msg" class="error-message" style="display:none;"></p>
+
+    <footer style="margin-top: 2rem; font-size: 0.9rem; color: #777;">
+      <p>Built with simplicity and privacy in mind.</p>
+    </footer>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
