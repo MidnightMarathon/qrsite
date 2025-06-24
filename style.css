@@ -37,7 +37,7 @@ button {
 
 /* Scale down visually to fit container width */
 #qr-code canvas {
-  max-width: 300px;   /* or whatever smaller size you want */
+  max-width: 100px;   /* or whatever smaller size you want */
   width: 100%;        /* responsive */
   height: auto;       /* keep aspect ratio */
   display: inline-block;
