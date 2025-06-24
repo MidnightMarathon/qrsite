@@ -1,19 +1,24 @@
 window.addEventListener("load", () => {
+  // Small visible QR code
   const qrCode = new QRCodeStyling({
-    width: 1024,
-    height: 1024,
+    width: 150,
+    height: 150,
     type: "png",
     data: "",
-    dotsOptions: {
-      color: "#000000",
-      type: "square"
-    },
-    backgroundOptions: {
-      color: "#ffffff"
-    },
-    qrOptions: {
-      errorCorrectionLevel: "H"
-    }
+    dotsOptions: { color: "#000000", type: "square" },
+    backgroundOptions: { color: "#ffffff" },
+    qrOptions: { errorCorrectionLevel: "H" }
+  });
+
+  // Hidden high-res QR code for download
+  const qrCodeHighRes = new QRCodeStyling({
+    width: 480,
+    height: 480,
+    type: "png",
+    data: "",
+    dotsOptions: { color: "#000000", type: "square" },
+    backgroundOptions: { color: "#ffffff" },
+    qrOptions: { errorCorrectionLevel: "H" }
   });
 
   const input = document.getElementById("qr-input");
@@ -29,34 +34,24 @@ window.addEventListener("load", () => {
     const text = input.value.trim();
     if (!text) return;
 
+    // Update both QR codes with the same data
     qrCode.update({ data: text });
+    qrCodeHighRes.update({ data: text });
 
-    // Wait a short moment to ensure rendering is complete
-    setTimeout(() => {
-      downloadControls.style.display = "flex";
-    }, 200);
+    downloadControls.style.display = "flex";
   });
 
-  downloadLink.addEventListener("click", async () => {
+  downloadLink.addEventListener("click", () => {
     const format = formatSelect.value;
 
-    if (format === "pdf") {
-      const { jsPDF } = window.jspdf;
-      const canvas = qrContainer.querySelector("canvas");
-      if (!canvas) return alert("QR code not generated yet.");
+    const raw = input.value.trim().toLowerCase();
+    const filename = (raw.split('.')[0] || 'qr-code')
+      .replace(/[^a-z0-9]/g, '_')
+      .slice(0, 50);
 
-      const imageData = canvas.toDataURL("image/png");
-
-      const pdf = new jsPDF({
-        orientation: "portrait",
-        unit: "pt",
-        format: [1024, 1024]
-      });
-
-      pdf.addImage(imageData, "PNG", 0, 0, 1024, 1024);
-      pdf.save("qr-code.pdf");
-    } else {
-      qrCode.download({ extension: format });
-    }
+    qrCodeHighRes.download({
+      extension: format,
+      name: filename
+    });
   });
 });
