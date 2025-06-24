@@ -36,21 +36,20 @@ button#generate-btn {
   cursor: pointer;
 }
 
-/* QR code container - controls visual size and centering */
 #qr-code {
   margin: 2rem 0;
   text-align: center;
-  width: 20%;
-  max-width: 100px;
+  width: 100px;         /* fixed width */
   margin-left: auto;
   margin-right: auto;
 }
 
-/* QR code canvas scales to container width */
 #qr-code canvas {
-  width: 100%;
+  width: 100%;          /* fill container width */
   height: auto;
   display: inline-block;
+}
+
 }
 
 /* Download link styling */
