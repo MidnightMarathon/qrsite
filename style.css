@@ -1,85 +1,160 @@
 body {
-  font-family: system-ui, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
   text-align: center;
   padding: 2rem;
-  background: #f9f9f9;
-  color: #333;
+  background: #f0f2f5; /* Softer than #f9f9f9 */
+  color: #222; /* Darker text for better readability */
   margin: 0;
 }
 
 main {
   max-width: 400px;
   margin: auto;
+  background: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
 }
 
+/* Input style */
 input#qr-input {
   width: 100%;
-  padding: 0.75rem;
-  font-size: 1rem;
-  margin: 1rem 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  padding: 0.85rem 1rem;
+  font-size: 1.1rem;
+  margin: 1rem 0 1.5rem;
+  border-radius: 12px;
+  border: 1.5px solid #ccc;
   box-sizing: border-box;
+  transition: border-color 0.3s ease;
 }
 
+input#qr-input:focus {
+  border-color: #2d9cdb;
+  outline: none;
+  box-shadow: 0 0 6px #2d9cdbaa;
+}
+
+/* Generate button */
 button#generate-btn {
-  padding: 0.75rem 1.25rem;
-  font-size: 1rem;
+  padding: 0.85rem 1.75rem;
+  font-size: 1.1rem;
   background: #2d9cdb;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 4px 14px #2d9cdbaa;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+button#generate-btn:hover {
+  background: #2382c9;
+  box-shadow: 0 6px 20px #2382c9cc;
+}
+
+button#generate-btn:active {
+  background: #1c5d86;
+  box-shadow: none;
+}
+
+/* Error message */
 #error-msg {
   color: #d32f2f;
   margin-top: 1rem;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: 1rem;
+  min-height: 1.4em; /* Reserve space to avoid layout shift */
 }
 
+/* QR code wrapper with subtle shadow */
 #qr-wrapper {
   width: 160px;
   height: 160px;
   margin: 2rem auto 1rem;
-  transform: scale(0.14);
-  transform-origin: top left;
+  /* Instead of scale(0.14), size directly set in #qr-code */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  overflow: hidden;
 }
 
+/* QR code container, should be exactly the size you want */
 #qr-code {
-  width: 1080px;
-  height: 1080px;
-}
-
-#qr-code canvas, #qr-code svg {
-  width: 100%;
-  height: 100%;
+  width: 160px; /* Match #qr-wrapper */
+  height: 160px;
   display: block;
 }
 
+/* Ensure canvas or svg inside QR code container fits perfectly */
+#qr-code canvas, #qr-code svg {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* Download controls container */
 #download-controls {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
+/* Format selector */
 #format-select {
-  padding: 0.5rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  padding: 0.5rem 0.8rem;
+  border-radius: 12px;
+  border: 1.5px solid #ccc;
   font-size: 1rem;
   cursor: pointer;
+  transition: border-color 0.3s ease;
 }
 
+#format-select:hover, #format-select:focus {
+  border-color: #2d9cdb;
+  outline: none;
+  box-shadow: 0 0 8px #2d9cdbaa;
+}
+
+/* Download link */
 a#download-link {
   display: inline-block;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1.4rem;
   background: #27ae60;
   color: white;
-  border-radius: 8px;
+  border-radius: 12px;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 700;
   cursor: pointer;
+  box-shadow: 0 4px 14px #27ae60aa;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+a#download-link:hover {
+  background: #219150;
+  box-shadow: 0 6px 22px #219150cc;
+}
+
+a#download-link:active {
+  background: #176934;
+  box-shadow: none;
+}
+
+/* Responsive tweaks */
+@media (max-width: 420px) {
+  main {
+    padding: 1.5rem 1.75rem;
+    margin: 1rem;
+  }
+
+  #qr-wrapper {
+    width: 140px;
+    height: 140px;
+  }
+
+  #qr-code {
+    width: 140px;
+    height: 140px;
+  }
 }
