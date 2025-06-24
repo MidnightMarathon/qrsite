@@ -1,7 +1,7 @@
 window.addEventListener("load", () => {
   const qrCode = new QRCodeStyling({
-    width: 1024,
-    height: 1024,
+    width: 480,
+    height: 480,
     type: "png",
     data: "",
     dotsOptions: {
