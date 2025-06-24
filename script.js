@@ -22,82 +22,80 @@ window.addEventListener("load", () => {
   const downloadLink = document.getElementById("download-link");
   const formatSelect = document.getElementById("format-select");
   const downloadControls = document.getElementById("download-controls");
-  const errorMessage = document.getElementById("error-message");
+  const qrWrapper = document.getElementById("qr-wrapper");
+  const errorMsg = document.getElementById("error-msg");
 
   qrCode.append(qrContainer);
 
-  generateBtn.addEventListener("click", () => {
-    const text = input.value.trim();
-    errorMessage.style.display = "none";
-    errorMessage.textContent = "";
-
-    if (!text) {
-      errorMessage.textContent = "Please enter something to encode.";
-      errorMessage.style.display = "block";
-      downloadControls.style.display = "none";
-      return;
-    }
-
-    if (!isValidURL(text)) {
-      errorMessage.textContent = "Please enter a valid URL (starting with http:// or https://).";
-      errorMessage.style.display = "block";
-      downloadControls.style.display = "none";
-      return;
-    }
-
-    qrCode.update({ data: text });
-    downloadControls.style.display = "flex";
-
-    // Set download filename
-    const filenameBase = getFilenameFromURL(text);
-    const ext = formatSelect.value || "png";
-    downloadLink.download = `${filenameBase}.${ext}`;
-  });
-
-  downloadLink.addEventListener("click", (e) => {
-    e.preventDefault();
-    const format = formatSelect.value;
-    qrCode.download({ extension: format });
-  });
-
-  formatSelect.addEventListener("change", () => {
-    // Update filename extension if user changes format after generation
-    const text = input.value.trim();
-    if (!text || !isValidURL(text)) return;
-    const filenameBase = getFilenameFromURL(text);
-    const ext = formatSelect.value || "png";
-    downloadLink.download = `${filenameBase}.${ext}`;
-  });
-
-  function isValidURL(str) {
+  // Validate URL format (simple check)
+  function isValidUrl(string) {
     try {
-      const url = new URL(str);
+      const url = new URL(string);
       return url.protocol === "http:" || url.protocol === "https:";
     } catch {
       return false;
     }
   }
 
-  function getFilenameFromURL(urlStr) {
+  // Extract domain name for filename
+  function extractFilename(url) {
     try {
-      const url = new URL(urlStr);
-      let hostname = url.hostname.toLowerCase();
-
-      // Remove www. prefix
+      const parsedUrl = new URL(url);
+      let hostname = parsedUrl.hostname;
       if (hostname.startsWith("www.")) {
         hostname = hostname.slice(4);
       }
-
-      // Remove TLD extensions, only keep domain part
-      // e.g. example.com => example, example.co.uk => example
-      // We'll just split by dot and take the first part
+      // Remove TLD (e.g., .com, .net)
       const parts = hostname.split(".");
-      if (parts.length > 1) {
-        return parts[0];
-      }
-      return hostname;
+      if (parts.length > 1) parts.pop();
+      return parts.join(".") || "qr-code";
     } catch {
       return "qr-code";
     }
   }
+
+  generateBtn.addEventListener("click", () => {
+    const text = input.value.trim();
+
+    errorMsg.style.display = "none";
+    downloadControls.style.display = "none";
+    qrWrapper.style.display = "none";
+
+    if (!isValidUrl(text)) {
+      errorMsg.textContent = "Please enter a valid URL starting with http:// or https://";
+      errorMsg.style.display = "block";
+      return;
+    }
+
+    qrCode.update({ data: text });
+    qrWrapper.style.display = "block";
+    downloadControls.style.display = "flex";
+
+    // Update download link filename on format or url change
+    const filename = extractFilename(text);
+    downloadLink.setAttribute("download", filename + "." + formatSelect.value);
+  });
+
+  // Update filename extension on format change
+  formatSelect.addEventListener("change", () => {
+    const text = input.value.trim();
+    if (!isValidUrl(text)) return;
+
+    const filename = extractFilename(text);
+    downloadLink.setAttribute("download", filename + "." + formatSelect.value);
+  });
+
+  downloadLink.addEventListener("click", (e) => {
+    const text = input.value.trim();
+    if (!isValidUrl(text)) {
+      e.preventDefault();
+      errorMsg.textContent = "Please enter a valid URL before downloading.";
+      errorMsg.style.display = "block";
+      return;
+    }
+
+    const format = formatSelect.value;
+    // Trigger download with selected format and filename
+    qrCode.download({ extension: format });
+  });
 });
