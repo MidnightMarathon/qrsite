@@ -28,6 +28,9 @@
     }
   }
   </script>
+
+  <!-- QRCodeStyling CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
 </head>
 <body>
   <main>
@@ -42,7 +45,17 @@
       <div id="qr-code"></div>
     </div>
 
-    <!-- download controls, error messages, footer, etc. -->
+    <div id="download-controls" style="display: none;">
+      <label for="format-select">Download format:</label>
+      <select id="format-select">
+        <option value="png">PNG</option>
+        <option value="svg">SVG</option>
+        <option value="jpeg">JPEG</option>
+      </select>
+      <a id="download-link" href="#">Download</a>
+    </div>
+
+    <p id="error-msg" class="error-message" style="display: none;"></p>
   </main>
 
   <script src="script.js"></script>
