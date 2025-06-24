@@ -1,19 +1,24 @@
 window.addEventListener("load", () => {
+  // Small visible QR code
   const qrCode = new QRCodeStyling({
-    width: 150,      // match CSS container size
+    width: 150,
     height: 150,
     type: "png",
     data: "",
-    dotsOptions: {
-      color: "#000000",
-      type: "square"
-    },
-    backgroundOptions: {
-      color: "#ffffff"
-    },
-    qrOptions: {
-      errorCorrectionLevel: "H"
-    }
+    dotsOptions: { color: "#000000", type: "square" },
+    backgroundOptions: { color: "#ffffff" },
+    qrOptions: { errorCorrectionLevel: "H" }
+  });
+
+  // Hidden high-res QR code for download
+  const qrCodeHighRes = new QRCodeStyling({
+    width: 1080,
+    height: 1080,
+    type: "png",
+    data: "",
+    dotsOptions: { color: "#000000", type: "square" },
+    backgroundOptions: { color: "#ffffff" },
+    qrOptions: { errorCorrectionLevel: "H" }
   });
 
   const input = document.getElementById("qr-input");
@@ -29,13 +34,15 @@ window.addEventListener("load", () => {
     const text = input.value.trim();
     if (!text) return;
 
+    // Update both QR codes with the same data
     qrCode.update({ data: text });
+    qrCodeHighRes.update({ data: text });
+
     downloadControls.style.display = "flex";
   });
 
   downloadLink.addEventListener("click", () => {
     const format = formatSelect.value;
-    qrCode.download({ extension: format });
+    qrCodeHighRes.download({ extension: format });
   });
 });
-
