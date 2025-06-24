@@ -32,6 +32,13 @@ button {
 
 #qr-code {
   margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+#qr-code canvas {
+  max-width: 100%;
+  height: auto;
 }
 
 a#download-link {
@@ -43,6 +50,7 @@ a#download-link {
   text-decoration: none;
   font-weight: bold;
 }
+
 #download-controls {
   margin-top: 1rem;
   display: flex;
@@ -57,4 +65,3 @@ a#download-link {
   border: 1px solid #ccc;
   font-size: 1rem;
 }
-
