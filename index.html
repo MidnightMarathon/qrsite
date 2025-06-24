@@ -12,6 +12,7 @@
     <p>No watermark. No paywall. Just QR codes.</p>
 
     <input type="text" id="qr-input" placeholder="Enter URL or text…" />
+    <div id="error-message" style="display:none;"></div>
     <button id="generate-btn">Generate QR</button>
 
     <div id="qr-wrapper">
@@ -24,7 +25,7 @@
           <option value="svg">SVG</option>
           <option value="jpeg">JPEG</option>
         </select>
-        <a id="download-link" href="#">Download</a>
+        <a id="download-link" href="#" download>Download</a>
       </div>
     </div>
   </main>
