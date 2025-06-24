@@ -1,24 +1,19 @@
 window.addEventListener("load", () => {
-  // Small visible QR code
   const qrCode = new QRCodeStyling({
-    width: 150,
-    height: 150,
+    width: 1024,
+    height: 1024,
     type: "png",
     data: "",
-    dotsOptions: { color: "#000000", type: "square" },
-    backgroundOptions: { color: "#ffffff" },
-    qrOptions: { errorCorrectionLevel: "H" }
-  });
-
-  // Hidden high-res QR code for download
-  const qrCodeHighRes = new QRCodeStyling({
-    width: 480,
-    height: 480,
-    type: "png",
-    data: "",
-    dotsOptions: { color: "#000000", type: "square" },
-    backgroundOptions: { color: "#ffffff" },
-    qrOptions: { errorCorrectionLevel: "H" }
+    dotsOptions: {
+      color: "#000000",
+      type: "square"
+    },
+    backgroundOptions: {
+      color: "#ffffff"
+    },
+    qrOptions: {
+      errorCorrectionLevel: "H"
+    }
   });
 
   const input = document.getElementById("qr-input");
@@ -34,24 +29,28 @@ window.addEventListener("load", () => {
     const text = input.value.trim();
     if (!text) return;
 
-    // Update both QR codes with the same data
     qrCode.update({ data: text });
-    qrCodeHighRes.update({ data: text });
-
     downloadControls.style.display = "flex";
   });
 
-  downloadLink.addEventListener("click", () => {
+  downloadLink.addEventListener("click", async () => {
     const format = formatSelect.value;
 
-    const raw = input.value.trim().toLowerCase();
-    const filename = (raw.split('.')[0] || 'qr-code')
-      .replace(/[^a-z0-9]/g, '_')
-      .slice(0, 50);
+    if (format === "pdf") {
+      const dataUrl = await qrCode.getRawData("png");
 
-    qrCodeHighRes.download({
-      extension: format,
-      name: filename
-    });
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "px",
+        format: [1024, 1024]
+      });
+
+      pdf.addImage(dataUrl, "PNG", 0, 0, 1024, 1024);
+      pdf.save("qr-code.pdf");
+
+    } else {
+      qrCode.download({ extension: format });
+    }
   });
 });
