@@ -68,10 +68,10 @@ button#generate-btn:hover {
 }
 
 #qr-code canvas {
-  width: 15% !important;
+  width: 100% !important;
   height: auto !important;
   display: block;
-  max-width: 100%;
+  max-width: 15%;
 }
 
 /* Download controls */
