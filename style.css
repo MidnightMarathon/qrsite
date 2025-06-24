@@ -69,26 +69,28 @@ button#generate-btn:hover {
 #qr-code {
     width: 120px; /* Desired display size for the QR code */
     height: 120px; /* Desired display size for the QR code */
-    /* margin: 2rem auto; // Removed margin auto here as #qr-wrapper handles centering */
-    overflow: hidden; /* Hides any content that overflows this container */
-    display: flex; /* Use flexbox to center the content *inside* */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    background-color: #f0f0f0; /* Add a light background to visualize the container */
-    border-radius: 8px; /* Rounded corners for the QR code container */
+    overflow: visible; /* Allow the large canvas to display */
+    position: relative;
+    margin: 2rem auto;
+    display: flex; /* Use flexbox to center the content inside */
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0; /* Light background */
+    border-radius: 8px; /* Rounded corners */
 }
 
 /* Styling for the QR code canvas itself */
 #qr-code canvas {
-    max-width: 100%; /* Ensure canvas does not exceed container width */
-    max-height: 100%; /* Ensure canvas does not exceed container height */
-    width: auto; /* Allow width to adjust based on height and aspect ratio */
-    height: auto; /* Allow height to adjust based on width and aspect ratio */
-    display: block; /* Ensure it behaves as a block element */
-    object-fit: contain; /* Scales the content to fit within the parent, maintaining aspect ratio */
-    border-radius: 4px; /* Slightly rounded corners for the canvas itself */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1080px !important;
+    height: 1080px !important;
+    transform-origin: top left;
+    transform: scale(0.1111); /* Scale down from 1080 to 120 */
+    border-radius: 4px;
+    display: block;
 }
-
 
 /* Download controls section */
 #download-controls {
