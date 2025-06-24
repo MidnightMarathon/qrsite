@@ -1,3 +1,4 @@
+/* Basic page styling */
 body {
   font-family: system-ui, sans-serif;
   text-align: center;
@@ -7,11 +8,14 @@ body {
   margin: 0;
 }
 
+/* Main container */
 main {
   max-width: 400px;
   margin: auto;
+  padding: 0 1rem;
 }
 
+/* Input styling */
 input#qr-input {
   width: 100%;
   padding: 0.75rem;
@@ -22,6 +26,7 @@ input#qr-input {
   box-sizing: border-box;
 }
 
+/* Generate button styling */
 button#generate-btn {
   padding: 0.75rem 1.25rem;
   font-size: 1rem;
@@ -32,17 +37,42 @@ button#generate-btn {
   cursor: pointer;
 }
 
+/* Wrapper for QR code and download controls */
+#qr-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/* QR code container — fixed size and centered */
 #qr-code {
-  margin: 2rem 0;
+  width: 150px;
+  height: 150px;
+  max-width: 100%;
+  max-height: 150px;
+  box-sizing: border-box;
   text-align: center;
 }
 
+/* Canvas scales to container size without distortion */
 #qr-code canvas {
-  width: 150px;
+  width: 100%;
   height: auto;
-  display: inline-block;
+  display: block;
+  margin: 0 auto;
 }
 
+/* Download controls container */
+#download-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Download link styling */
 a#download-link {
   display: inline-block;
   padding: 0.5rem 1rem;
@@ -52,16 +82,10 @@ a#download-link {
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
+  margin-top: 0; /* spacing handled by #qr-wrapper gap */
 }
 
-#download-controls {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-}
-
+/* Dropdown styling */
 #format-select {
   padding: 0.5rem;
   border-radius: 8px;
