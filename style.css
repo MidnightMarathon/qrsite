@@ -10,7 +10,7 @@ body {
 
 /* Main container */
 main {
-  max-width: 100px;
+  max-width: 400px;
   margin: auto;
 }
 
@@ -41,7 +41,7 @@ button#generate-btn {
   margin: 2rem 0;
   text-align: center;
   width: 90%;
-  max-width: 300px;
+  max-width: 100px;
   margin-left: auto;
   margin-right: auto;
 }
