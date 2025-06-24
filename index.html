@@ -6,9 +6,6 @@
 
   <title>Free QR Code Generator – No Watermark | JustQR</title>
   <meta name="description" content="Generate high-quality QR codes for any link. 100% free, no watermark, no signup. Download your QR in PNG, SVG, or JPEG format instantly.">
-  <meta name="keywords" content="Free QR Code Generator, QR Code Download, No Watermark QR, SVG QR, PNG QR, Open QR Generator, JustQR">
-  <meta name="author" content="JustQR">
-  <link rel="canonical" href="https://www.openqrgenerator.com/">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Free QR Code Generator – No Watermark | JustQR" />
@@ -25,30 +22,13 @@
 
   <!-- Favicon -->
   <link rel="icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-
-  <!-- Stylesheet -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "JustQR",
-    "url": "https://www.openqrgenerator.com",
-    "description": "Generate QR codes instantly for free. Download in PNG, SVG, or JPEG with no sign-up or watermark.",
-    "publisher": {
-      "@type": "Organization",
-      "name": "JustQR"
-    }
-  }
-  </script>
 </head>
 <body>
-  <main>
-    <h1>Free QR Code Generator – JustQR</h1>
-    <p>Create QR codes instantly. No watermark. No paywall. No signup required.</p>
+  <main class="card">
+    <h1 style="font-weight: 600; font-size: 2rem; margin-bottom: 0.25rem;">OpenQRGenerator</h1>
+    <p style="color: #555; margin-top: 0;">Free & Private QR Code Generator</p>
 
     <input type="text" id="qr-input" placeholder="Enter a valid URL (e.g. https://example.com)" />
     <button id="generate-btn">Generate QR</button>
@@ -67,10 +47,10 @@
       <a id="download-link" href="#">Download</a>
     </div>
 
-    <p id="error-msg" class="error-message" style="display:none;"></p>
+    <p id="error-msg" class="error-message" style="display:none; color: red; margin-top: 1rem;"></p>
 
     <footer style="margin-top: 2rem; font-size: 0.9rem; color: #777;">
-      <p>Built with simplicity and privacy in mind.</p>
+      <p>Built with simplicity and privacy in mind. No tracking. No watermarks.</p>
     </footer>
   </main>
 
@@ -79,4 +59,3 @@
   <script src="https://cdn.counter.dev/script.js" data-id="7270757a-f9e8-4c07-811c-e7d78fb64b92" data-utcoffset="-6"></script>
 </body>
 </html>
-
