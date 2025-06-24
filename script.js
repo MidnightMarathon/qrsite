@@ -44,11 +44,10 @@ window.addEventListener("load", () => {
   downloadLink.addEventListener("click", () => {
     const format = formatSelect.value;
 
-    // Sanitize input text to create a safe filename
-    const filename = input.value.trim()
-      .replace(/[^a-z0-9]/gi, '_')  // replace non-alphanumeric with underscore
-      .toLowerCase()
-      .slice(0, 50) || 'qr-code';  // limit length, fallback if empty
+    const raw = input.value.trim().toLowerCase();
+    const filename = (raw.split('.')[0] || 'qr-code')
+      .replace(/[^a-z0-9]/g, '_')
+      .slice(0, 50);
 
     qrCodeHighRes.download({
       extension: format,
@@ -56,4 +55,3 @@ window.addEventListener("load", () => {
     });
   });
 });
-
