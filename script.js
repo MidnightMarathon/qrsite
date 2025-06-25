@@ -30,17 +30,22 @@ window.addEventListener("load", () => {
   function isValidUrl(string) {
     try {
       const url = new URL(string);
-      return url.protocol === "http:" || url.protocol === "https:";
-    } catch (_) {
+      const hostname = url.hostname;
+
+      // Basic check: must include a dot and not start/end with one
+      const validHostname = hostname.includes(".") && !hostname.startsWith(".") && !hostname.endsWith(".");
+      const validProtocol = url.protocol === "http:" || url.protocol === "https:";
+      return validProtocol && validHostname;
+    } catch {
       return false;
     }
   }
 
-  function prependHttpsIfMissing(input) {
-    if (!/^https?:\/\//i.test(input)) {
-      return "https://" + input;
+  function prependHttpsIfMissing(text) {
+    if (!/^https?:\/\//i.test(text)) {
+      return "https://" + text;
     }
-    return input;
+    return text;
   }
 
   function extractFilename(url) {
@@ -81,20 +86,18 @@ window.addEventListener("load", () => {
   });
 
   formatSelect.addEventListener("change", () => {
-    let text = input.value.trim();
-    text = prependHttpsIfMissing(text);
+    const text = input.value.trim();
+    const sanitized = prependHttpsIfMissing(text);
+    if (!isValidUrl(sanitized)) return;
 
-    if (!isValidUrl(text)) return;
-
-    const filename = extractFilename(text);
+    const filename = extractFilename(sanitized);
     downloadLink.setAttribute("download", filename + "." + formatSelect.value);
   });
 
   downloadLink.addEventListener("click", (e) => {
-    let text = input.value.trim();
-    text = prependHttpsIfMissing(text);
-
-    if (!isValidUrl(text)) {
+    const text = input.value.trim();
+    const sanitized = prependHttpsIfMissing(text);
+    if (!isValidUrl(sanitized)) {
       e.preventDefault();
       errorMsg.textContent = "Please enter a valid URL before downloading.";
       errorMsg.style.display = "block";
