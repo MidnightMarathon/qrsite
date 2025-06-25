@@ -3,15 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>JustQR – Free QR Code Generator</title>
+  <title>Free QR Code Generator – Create QR Codes Instantly | JustQR</title>
+  <meta name="description" content="Generate free, high-quality QR codes instantly. No watermark, no signup, download as PNG, SVG, or JPEG. Perfect for all your QR code needs." />
+  <link rel="canonical" href="https://yourdomain.com/" />
+
+  <!-- Open Graph and Twitter Cards here -->
+
+  <link rel="icon" href="/favicon.ico" />
   <link rel="stylesheet" href="style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "JustQR",
+    "url": "https://yourdomain.com/",
+    "applicationCategory": "WebApplication",
+    "description": "Free QR Code Generator — create QR codes instantly with no watermark or signup.",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <!-- QRCodeStyling CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
 </head>
 <body>
   <main>
-    <h1>JustQR</h1>
-    <p>No watermark. No paywall. Just QR codes.</p>
+    <h1>Free QR Code Generator – JustQR</h1>
+    <p>Create QR codes instantly. No watermark. No signup required.</p>
 
-    <input type="text" id="qr-input" placeholder="Enter a valid URL (e.g. https://example.com)" />
+    <label for="qr-input" class="sr-only">Enter your URL</label>
+    <input id="qr-input" type="text" placeholder="https://example.com" />
     <button id="generate-btn">Generate QR</button>
 
     <div id="qr-wrapper" style="display:none;">
@@ -28,10 +55,9 @@
       <a id="download-link" href="#">Download</a>
     </div>
 
-    <p id="error-msg" class="error-message" style="display:none;"></p>
+    <p id="error-msg" class="error-message" style="display: none;"></p>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

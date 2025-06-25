@@ -27,25 +27,27 @@ window.addEventListener("load", () => {
 
   qrCode.append(qrContainer);
 
-  // Add https:// if the input doesn't already include http or https
-  function fixUrl(url) {
-    if (!/^https?:\/\//i.test(url)) {
-      return "https://" + url;
-    }
-    return url;
-  }
-
-  // Validate URL format (simple check)
   function isValidUrl(string) {
     try {
       const url = new URL(string);
-      return url.protocol === "http:" || url.protocol === "https:";
+      const hostname = url.hostname;
+
+      // Basic check: must include a dot and not start/end with one
+      const validHostname = hostname.includes(".") && !hostname.startsWith(".") && !hostname.endsWith(".");
+      const validProtocol = url.protocol === "http:" || url.protocol === "https:";
+      return validProtocol && validHostname;
     } catch {
       return false;
     }
   }
 
-  // Extract domain name for filename
+  function prependHttpsIfMissing(text) {
+    if (!/^https?:\/\//i.test(text)) {
+      return "https://" + text;
+    }
+    return text;
+  }
+
   function extractFilename(url) {
     try {
       const parsedUrl = new URL(url);
@@ -53,7 +55,6 @@ window.addEventListener("load", () => {
       if (hostname.startsWith("www.")) {
         hostname = hostname.slice(4);
       }
-      // Remove TLD (e.g., .com, .net)
       const parts = hostname.split(".");
       if (parts.length > 1) parts.pop();
       return parts.join(".") || "qr-code";
@@ -63,14 +64,15 @@ window.addEventListener("load", () => {
   }
 
   generateBtn.addEventListener("click", () => {
-    let text = fixUrl(input.value.trim());
+    let text = input.value.trim();
+    text = prependHttpsIfMissing(text);
 
     errorMsg.style.display = "none";
     downloadControls.style.display = "none";
     qrWrapper.style.display = "none";
 
     if (!isValidUrl(text)) {
-      errorMsg.textContent = "Please enter a valid URL starting with http:// or https://";
+      errorMsg.textContent = "Please enter a valid URL (e.g. https://example.com)";
       errorMsg.style.display = "block";
       return;
     }
@@ -84,16 +86,18 @@ window.addEventListener("load", () => {
   });
 
   formatSelect.addEventListener("change", () => {
-    let text = fixUrl(input.value.trim());
-    if (!isValidUrl(text)) return;
+    const text = input.value.trim();
+    const sanitized = prependHttpsIfMissing(text);
+    if (!isValidUrl(sanitized)) return;
 
-    const filename = extractFilename(text);
+    const filename = extractFilename(sanitized);
     downloadLink.setAttribute("download", filename + "." + formatSelect.value);
   });
 
   downloadLink.addEventListener("click", (e) => {
-    let text = fixUrl(input.value.trim());
-    if (!isValidUrl(text)) {
+    const text = input.value.trim();
+    const sanitized = prependHttpsIfMissing(text);
+    if (!isValidUrl(sanitized)) {
       e.preventDefault();
       errorMsg.textContent = "Please enter a valid URL before downloading.";
       errorMsg.style.display = "block";
