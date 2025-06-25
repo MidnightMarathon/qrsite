@@ -37,8 +37,9 @@
     <h1>Free QR Code Generator – JustQR</h1>
     <p>Create QR codes instantly. No watermark. No signup required.</p>
 
-
-
+    <label for="qr-input" class="sr-only">Enter your URL</label>
+    <input id="qr-input" type="text" placeholder="https://example.com" />
+    <button id="generate-btn">Generate QR</button>
 
     <div id="qr-wrapper" style="display:none;">
       <div id="qr-code"></div>
@@ -74,7 +75,6 @@
     margin-right: auto;
   ">
     JustQR respects your privacy &mdash; we do not store your data, use cookies, or track you.
-    QR codes generated using <a href="https://github.com/kozakdenys/qr-code-styling" target="_blank" rel="noopener noreferrer" style="color:#888; text-decoration: underline;">qr-code-styling (MIT License)</a>.
   </footer>
 
   <script src="script.js"></script>
