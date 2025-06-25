@@ -33,28 +33,38 @@ p {
   margin-bottom: 2rem;
 }
 
-/* Tile container */
-.qr-tile {
-  background: white;
-  border-radius: 20px;
-  padding: 2rem 3rem;
-  box-shadow: 0 8px 24px rgb(0 0 0 / 0.12);
+/* QR Code wrapper with fixed visible size */
+#qr-wrapper {
+  margin-top: 1rem;
+  border-radius: 16px;
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 1.5rem;
+  max-width: 280px;   /* max visible width */
+  max-height: 280px;  /* max visible height */
+  width: 100%;        /* responsive */
+  box-sizing: border-box;
+  background: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
 
-/* Input field */
-#qr-input {
+/* Container for the QR code canvas/image */
+#qr-code {
   width: 100%;
-  max-width: 400px;
-  font-size: 1.125rem;
-  padding: 0.85rem 1rem;
-  border: 1px solid #d2d2d7;
-  border-radius: 12px;
-  outline-offset: 2px;
-  box-sizing: border-box;
+  height: 100%;
+  max-width: 280px;
+  max-height: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Make canvas fill the container responsively */
+#qr-code canvas {
+  width: 100% !important;
+  height: auto !important;
+  display: block;
 }
 
 /* Generate button */
@@ -72,21 +82,6 @@ p {
 
 #generate-btn:hover {
   background: #005bb5;
-}
-
-/* QR wrapper: DO NOT change size or scaling styles here */
-#qr-wrapper {
-  margin-top: 1rem;
-  border-radius: 16px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* These styles are for the QR code image container, leave as-is or tweak carefully */
-#qr-code {
-  /* no width/height here — let script handle this */
 }
 
 /* Download controls */
