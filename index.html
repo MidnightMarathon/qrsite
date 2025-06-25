@@ -7,7 +7,7 @@
   <meta name="description" content="Generate free, high-quality QR codes instantly. No watermark, no signup, download as PNG, SVG, or JPEG. Perfect for all your QR code needs." />
   <link rel="canonical" href="https://yourdomain.com/" />
 
-  <!-- Open Graph and Twitter Cards can be added here -->
+  <!-- Open Graph and Twitter Cards here -->
 
   <link rel="icon" href="/favicon.ico" />
   <link rel="stylesheet" href="style.css" />
@@ -31,6 +31,159 @@
 
   <!-- QRCodeStyling CDN -->
   <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+
+  <style>
+    /* Apple-style typography */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 1.47;
+      color: #1d1d1f;
+      background-color: #fff;
+      margin: 0;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-weight: 600;
+      font-size: 2.5rem;
+      line-height: 1.1;
+      color: #1d1d1f;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Rest of your style (you can move this to style.css) */
+
+    label.sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+
+    input#qr-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      margin: 1.25rem 0 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      transition: border 0.2s ease;
+    }
+
+    input#qr-input:focus {
+      outline: none;
+      border-color: #2d9cdb;
+    }
+
+    button#generate-btn {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      background: #2d9cdb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button#generate-btn:hover {
+      background: #238acb;
+    }
+
+    #qr-wrapper {
+      margin: 2rem 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 120px;
+    }
+
+    #qr-code {
+      width: 120px;
+      height: 120px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0;
+      border-radius: 8px;
+    }
+
+    #qr-code canvas {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    #download-controls {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    #format-select {
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    #download-link {
+      display: inline-block;
+      padding: 0.5rem 1.25rem;
+      background: #27ae60;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    #download-link:hover {
+      background: #219150;
+    }
+
+    .error-message {
+      color: #e74c3c;
+      margin-top: 1rem;
+      font-weight: 500;
+    }
+
+    footer {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      font-size: 12px;
+      color: #888;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      border-top: 1px solid #e1e1e1;
+      user-select: none;
+      letter-spacing: 0.02em;
+      line-height: 1.5;
+      margin-top: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
 </head>
 <body>
   <main>
@@ -58,25 +211,10 @@
     <p id="error-msg" class="error-message" style="display: none;"></p>
   </main>
 
-  <footer style="
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 12px;
-    color: #888;
-    text-align: center;
-    padding: 1.5rem 1rem;
-    border-top: 1px solid #e1e1e1;
-    user-select: none;
-    letter-spacing: 0.02em;
-    line-height: 1.5;
-    margin-top: 3rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  ">
+  <script src="script.js"></script>
+
+  <footer>
     JustQR respects your privacy &mdash; we do not store your data, use cookies, or track you.
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
