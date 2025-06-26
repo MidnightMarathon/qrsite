@@ -6,14 +6,14 @@ window.addEventListener("load", () => {
     data: "",
     dotsOptions: {
       color: "#000000",
-      type: "square"
+      type: "square",
     },
     backgroundOptions: {
-      color: "#ffffff"
+      color: "#ffffff",
     },
     qrOptions: {
-      errorCorrectionLevel: "H"
-    }
+      errorCorrectionLevel: "H",
+    },
   });
 
   const input = document.getElementById("qr-input");
@@ -31,7 +31,10 @@ window.addEventListener("load", () => {
     try {
       const url = new URL(string);
       const hostname = url.hostname;
-      const validHostname = hostname.includes(".") && !hostname.startsWith(".") && !hostname.endsWith(".");
+
+      // Basic check: must include a dot and not start/end with one
+      const validHostname =
+        hostname.includes(".") && !hostname.startsWith(".") && !hostname.endsWith(".");
       const validProtocol = url.protocol === "http:" || url.protocol === "https:";
       return validProtocol && validHostname;
     } catch {
@@ -105,21 +108,39 @@ window.addEventListener("load", () => {
     const format = formatSelect.value;
 
     if (format === "pdf") {
+      e.preventDefault(); // prevent default link behavior
+
       const canvasElement = qrContainer.querySelector("canvas");
-      if (!canvasElement) return;
+      if (!canvasElement) {
+        errorMsg.textContent = "QR code not generated yet.";
+        errorMsg.style.display = "block";
+        return;
+      }
 
-      const canvas = await html2canvas(canvasElement);
-      const imageData = canvas.toDataURL("image/png");
+      try {
+        const canvas = await html2canvas(canvasElement);
+        const imageData = canvas.toDataURL("image/png");
 
-      const { jsPDF } = window.jspdf;
-      const pdf = new jsPDF({
-        orientation: "portrait",
-        unit: "pt",
-        format: [canvas.width, canvas.height]
-      });
+        const { jsPDF } = window.jspdf;
+        if (!jsPDF) {
+          errorMsg.textContent = "PDF generation library not loaded.";
+          errorMsg.style.display = "block";
+          return;
+        }
 
-      pdf.addImage(imageData, "PNG", 0, 0, canvas.width, canvas.height);
-      pdf.save(`${extractFilename(sanitized)}.pdf`);
+        const pdf = new jsPDF({
+          orientation: "portrait",
+          unit: "pt",
+          format: [canvas.width, canvas.height],
+        });
+
+        pdf.addImage(imageData, "PNG", 0, 0, canvas.width, canvas.height);
+        pdf.save(`${extractFilename(sanitized)}.pdf`);
+      } catch (err) {
+        console.error(err);
+        errorMsg.textContent = "Error generating PDF.";
+        errorMsg.style.display = "block";
+      }
     } else {
       qrCode.download({ extension: format });
     }
