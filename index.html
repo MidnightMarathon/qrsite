@@ -7,17 +7,30 @@
   <meta name="description" content="Generate free, high-quality QR codes instantly. No watermark, no signup, download as PNG, SVG, or JPEG. Perfect for all your QR code needs." />
   <link rel="canonical" href="https://yourdomain.com/" />
 
+  <!-- Open Graph (Facebook, LinkedIn) -->
+  <meta property="og:title" content="Free QR Code Generator – OpenQR" />
+  <meta property="og:description" content="Create high-quality QR codes instantly. No signup. No watermark. Download as PNG, SVG, or JPEG." />
+  <meta property="og:url" content="https://yourdomain.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://yourdomain.com/og-image.png" />
 
-  <!-- Open Graph and Twitter Cards can be added here -->
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Free QR Code Generator – OpenQR" />
+  <meta name="twitter:description" content="Generate QR codes instantly and download in PNG, SVG, or JPEG formats. 100% free, no tracking." />
+  <meta name="twitter:image" content="https://yourdomain.com/twitter-image.png" />
 
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="stylesheet" href="style.css" />
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 
+  <!-- Structured Data for SEO -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "JustQR",
+    "name": "OpenQR",
     "url": "https://yourdomain.com/",
     "applicationCategory": "WebApplication",
     "description": "Free QR Code Generator — create QR codes instantly with no watermark or signup.",
@@ -30,41 +43,51 @@
   }
   </script>
 
-
   <!-- QRCodeStyling CDN -->
   <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
 
+  <!-- Main stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <main>
     <h1>Free QR Code Generator – OpenQR</h1>
     <p>Create QR codes instantly. No watermark. No signup required.</p>
-
+    
     <section class="qr-tile">
-      <input id="qr-input" type="text" placeholder="https://example.com" />
-      <button id="generate-btn">Generate QR</button>
+      <div class="input-group">
+        <input id="qr-input" type="text" placeholder="https://example.com" aria-label="Enter the URL to generate QR code" />
+        <button id="generate-btn" aria-label="Generate QR Code">Generate QR</button>
+      </div>
 
-      <div id="qr-wrapper" style="display:none;">
-        <div id="qr-code"></div>
+      <div id="qr-wrapper" style="display:none;" aria-live="polite">
+        <div id="qr-code" aria-label="Generated QR code"></div>
       </div>
 
       <div id="download-controls" style="display:none;">
         <label for="format-select">Download format:</label>
-        <select id="format-select">
+        <select id="format-select" aria-label="Select QR code download format">
           <option value="png">PNG</option>
           <option value="svg">SVG</option>
           <option value="jpeg">JPEG</option>
         </select>
-        <a id="download-link" href="#">Download</a>
+        <a id="download-link" href="#" aria-label="Download QR code">Download</a>
       </div>
 
-      <p id="error-msg" class="error-message" style="display:none;"></p>
+      <p id="error-msg" class="error-message" style="display:none;" role="alert"></p>
     </section>
   </main>
 
-
   <footer style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 12px; color: #888; text-align: center; padding: 2rem 1rem; border-top: 1px solid #e1e1e1; line-height: 1.6; max-width: 600px; margin: 4rem auto 2rem auto;">
+<<<<<<< Dev
+    <p><strong>OpenQR</strong> is a free and privacy-first QR code generator.</p>
+    <p>We do not store your data, use cookies, or track you.</p>
+    <p>All generation happens in your browser.</p>
+    <p>
+      Built with ❤️ using <a href="https://github.com/kozakdenys/qr-code-styling" target="_blank" rel="noopener noreferrer" style="color:#888; text-decoration: underline;">qr-code-styling</a> (MIT License).
+    </p>
+  </footer>
+=======
   <p><strong>OpenQR</strong> is a free and privacy-first QR code generator.</p>
   <p>OpenQR respects your privacy &mdash; we do not store your data, use cookies, or track you. 
   <p>All generation happens in your browser.
@@ -74,7 +97,7 @@
 </footer>
 
 
-
+>>>>>>> main
 
   <script src="script.js"></script>
 </body>
