@@ -31,8 +31,6 @@ window.addEventListener("load", () => {
     try {
       const url = new URL(string);
       const hostname = url.hostname;
-
-      // Basic check: must include a dot and not start/end with one
       const validHostname = hostname.includes(".") && !hostname.startsWith(".") && !hostname.endsWith(".");
       const validProtocol = url.protocol === "http:" || url.protocol === "https:";
       return validProtocol && validHostname;
@@ -94,7 +92,7 @@ window.addEventListener("load", () => {
     downloadLink.setAttribute("download", filename + "." + formatSelect.value);
   });
 
-  downloadLink.addEventListener("click", (e) => {
+  downloadLink.addEventListener("click", async (e) => {
     const text = input.value.trim();
     const sanitized = prependHttpsIfMissing(text);
     if (!isValidUrl(sanitized)) {
@@ -105,6 +103,25 @@ window.addEventListener("load", () => {
     }
 
     const format = formatSelect.value;
-    qrCode.download({ extension: format });
+
+    if (format === "pdf") {
+      const canvasElement = qrContainer.querySelector("canvas");
+      if (!canvasElement) return;
+
+      const canvas = await html2canvas(canvasElement);
+      const imageData = canvas.toDataURL("image/png");
+
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "pt",
+        format: [canvas.width, canvas.height]
+      });
+
+      pdf.addImage(imageData, "PNG", 0, 0, canvas.width, canvas.height);
+      pdf.save(`${extractFilename(sanitized)}.pdf`);
+    } else {
+      qrCode.download({ extension: format });
+    }
   });
 });
