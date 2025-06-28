@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QR Code File Types | OpenQR</title>
+  <meta name="description" content="Understand the differences between PNG, SVG, and JPEG file types for your QR codes. Learn which format is best for web, print, or design." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      background: linear-gradient(135deg, #b388eb, #8fd3f4, #f093fb);
+      background-size: 300% 300%;
+      animation: gradientFlow 15s ease infinite;
+      color: #1d1d1f;
+      padding: 2rem;
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    nav {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      display: flex;
+      gap: 0.75rem;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      padding: 0.5rem 1.25rem;
+      background-color: #f0f0f5;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      color: #333;
+      text-decoration: none;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      transition: background-color 0.25s ease;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      background-color: #d6d6db;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 8rem auto 4rem;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: saturate(180%) blur(16px);
+      border-radius: 24px;
+      padding: 3rem;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      margin-top: 2rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/content.html">Information</a>
+  </nav>
+
+  <main>
+    <h1>Understanding QR Code File Types</h1>
+    <p>When you generate a QR code with OpenQR, you can download it as a <strong>PNG</strong>, <strong>SVG</strong>, or <strong>JPEG</strong>. Each file type has different strengths depending on your use case.</p>
+
+    <h2>PNG (Portable Network Graphics)</h2>
+    <p>PNG files are great for most uses. They offer high quality with transparency support and are ideal for web, documents, and general sharing. If you’re unsure, PNG is usually the safest option.</p>
+
+    <h2>SVG (Scalable Vector Graphics)</h2>
+    <p>SVG is a vector format, which means it can scale infinitely without losing quality. This is perfect for print materials, logos, or use in design software like Illustrator or Figma. SVGs are also smaller in file size and editable by code.</p>
+
+    <h2>JPEG (Joint Photographic Experts Group)</h2>
+    <p>JPEGs are best for images that need to be compressed and shared quickly, but they do not support transparency and may slightly reduce quality. Use this format if you're embedding the QR code in an email or need maximum compatibility.</p>
+
+    <p style="margin-top: 2rem;">→ Pick the format that fits your needs. OpenQR gives you all three, watermark-free.</p>
+  </main>
+</body>
+</html>

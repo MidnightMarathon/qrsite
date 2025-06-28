@@ -1,3 +1,59 @@
+/* Apple-style pill navigation in top-left */
+nav {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+  animation: fadeIn 0.8s ease-out both;
+}
+
+/* Base nav link styling */
+nav a {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background-color: #f9f9f9;
+  border-radius: 9999px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.85rem;
+  color: #333;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Hover state */
+nav a:hover {
+  background-color: #eaeaea;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Focus (keyboard/tab) state */
+nav a:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(45, 156, 219, 0.4);
+}
+
+/* Active link (for current page) */
+nav a.active {
+  background-color: #d0d0d5;
+  font-weight: 600;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 /* Base styles */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
