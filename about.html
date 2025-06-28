@@ -2,51 +2,146 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Generate clean QR codes with no watermark, no sign-up, and no tracking.">
-  <title>QR Codes with No Watermark</title>
-  <link rel="stylesheet" href="/style.css"> <!-- assumes your global styles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QR Codes with No Watermark – OpenQRGenerator</title>
+  <meta name="description" content="Why this QR code generator doesn’t add watermarks, accounts, or tracking. Clean, private, and free." />
+  <meta property="og:title" content="QR Codes with No Watermark – OpenQRGenerator" />
+  <meta property="og:description" content="Why this QR code generator doesn’t add watermarks, accounts, or tracking. Clean, private, and free." />
+  <meta property="og:url" content="https://www.openqrgenerator.com/no-watermark.html" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    /* Page-specific tweaks */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 4rem 1rem 6rem;
+      line-height: 1.6;
+      color: #111;
+      background: #fff;
+    }
+    header, footer {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 1rem 1rem;
+      font-size: 0.875rem;
+      color: #666;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header a, footer a {
+      color: #0057cc;
+      text-decoration: none;
+    }
+    header a:hover, footer a:hover {
+      text-decoration: underline;
+    }
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    li {
+      margin-bottom: 1.5rem;
+    }
+    li p:first-child {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    a {
+      color: #0057cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
-<body class="bg-white text-neutral-900 font-sans px-4 py-10 max-w-3xl mx-auto">
+<body>
+  <header>
+    <a href="/">OpenQRGenerator</a>
+    <nav>
+      <a href="/why.html">Why</a> | 
+      <a href="/no-watermark.html" aria-current="page">No Watermark</a>
+    </nav>
+  </header>
 
-  <h1 class="text-2xl font-semibold mb-6">QR Codes with No Watermark</h1>
+  <main>
+    <h1>QR Codes with No Watermark</h1>
 
-  <p class="mb-4">Some QR code generators add a watermark or require sign-up. This one doesn’t. It runs in the browser, doesn’t track anything, and doesn’t add branding.</p>
+    <p>
+      Some QR code generators add a watermark or require sign-up. This one
+      doesn’t. It runs in the browser, doesn’t track anything, and doesn’t add
+      branding.
+    </p>
 
-  <p class="mb-4">You can use it to make QR codes for URLs, plain text, and a few other formats. Everything stays local. Nothing gets uploaded or stored.</p>
+    <p>
+      You can use it to make QR codes for URLs, plain text, and a few other
+      formats. Everything stays local. Nothing gets uploaded or stored.
+    </p>
 
-  <p class="mb-10">No logos. No accounts. Just clean QR codes.</p>
+    <p>No logos. No accounts. Just clean QR codes.</p>
 
-  <h2 class="text-xl font-medium mb-4">Why No Watermark?</h2>
+    <h2>Why No Watermark?</h2>
 
-  <p class="mb-10">Watermarks take up space, distract from the content, and can make scanning less reliable. They’re not helpful if you just want to generate a code and use it however you want.</p>
+    <p>
+      Watermarks take up space, distract from the content, and can make scanning
+      less reliable. They’re not helpful if you just want to generate a code and
+      use it however you want.
+    </p>
 
-  <p class="mb-10">This tool leaves them out on purpose.</p>
+    <p>This tool leaves them out on purpose.</p>
 
-  <h2 class="text-xl font-medium mb-4">FAQ</h2>
-  <ul class="space-y-6">
-    <li>
-      <p class="font-semibold">Do I need to create an account?</p>
-      <p>No.</p>
-    </li>
-    <li>
-      <p class="font-semibold">Is there a limit to how many QR codes I can make?</p>
-      <p>No.</p>
-    </li>
-    <li>
-      <p class="font-semibold">Can I use the QR codes commercially?</p>
-      <p>Yes.</p>
-    </li>
-    <li>
-      <p class="font-semibold">Are analytics or tracking used?</p>
-      <p>No. The generator runs in your browser and doesn’t send data anywhere.</p>
-    </li>
-    <li>
-      <p class="font-semibold">Is this open source?</p>
-      <p>Yes. You can view or fork the code <a href="#" class="text-blue-600 underline hover:text-blue-800">on GitHub</a>.</p>
-    </li>
-  </ul>
+    <h2>FAQ</h2>
+    <ul>
+      <li>
+        <p>Do I need to create an account?</p>
+        <p>No.</p>
+      </li>
+      <li>
+        <p>Is there a limit to how many QR codes I can make?</p>
+        <p>No.</p>
+      </li>
+      <li>
+        <p>Can I use the QR codes commercially?</p>
+        <p>Yes.</p>
+      </li>
+      <li>
+        <p>Are analytics or tracking used?</p>
+        <p>No. The generator runs in your browser and doesn’t send data anywhere.</p>
+      </li>
+      <li>
+        <p>Is this open source?</p>
+        <p>
+          Yes. You can view or fork the code
+          <a href="https://github.com/MidnightMarathon/qrsite" target="_blank" rel="noopener noreferrer">on GitHub</a>.
+        </p>
+      </li>
+    </ul>
+  </main>
 
+  <footer>
+    <div>© 2025 OpenQRGenerator</div>
+    <div>
+      <a href="/privacy.html">Privacy</a> | <a href="/terms.html">Terms</a>
+    </div>
+  </footer>
 </body>
 </html>
+
 
