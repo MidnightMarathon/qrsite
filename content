@@ -10,7 +10,7 @@
   <header>
     <nav>
       <a href="/">Home</a>
-      <a href="/blog.html">Blog</a> <!-- Add this to other pages too -->
+      <a href="/content.html" class="active">Information</a>
     </nav>
   </header>
 
