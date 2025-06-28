@@ -4,8 +4,123 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Information | OpenQR</title>
-  <meta name="description" content="Learn more about QR codes, privacy, and how OpenQR works." />
+  <meta name="description" content="Learn more about OpenQR, our mission, and why we built this privacy-first QR code generator." />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Carousel container */
+    .carousel-wrapper {
+      position: relative;
+      max-width: 480px;
+      margin: 2rem auto;
+      overflow: hidden;
+    }
+
+    /* Tile container - horizontal scroll */
+    .carousel {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding-bottom: 1rem;
+      scrollbar-width: none; /* Firefox */
+    }
+    .carousel::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
+    }
+
+    /* Tile styling */
+    .tile {
+      flex: 0 0 320px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      user-select: none;
+      scroll-snap-align: start;
+      transition: box-shadow 0.3s ease;
+    }
+    .tile:hover, .tile:focus-within {
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+    .tile h2 {
+      margin-top: 0;
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: #111;
+    }
+    .tile p {
+      flex-grow: 1;
+      margin: 1rem 0 1.5rem 0;
+      color: #444;
+      line-height: 1.4;
+    }
+    .tile a {
+      align-self: flex-start;
+      padding: 0.5rem 1rem;
+      background: #2d9cdb;
+      color: white;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .tile a:hover, .tile a:focus {
+      background: #1c82c1;
+      outline: none;
+    }
+
+    /* Scroll snap container */
+    .carousel-wrapper {
+      scroll-snap-type: x mandatory;
+    }
+
+    /* Arrow buttons */
+    .arrow-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255 255 255 / 0.85);
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: background 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      z-index: 5;
+    }
+    .arrow-btn:hover {
+      background: rgba(45,156,219,0.9);
+    }
+    .arrow-btn:focus {
+      outline: 2px solid #2d9cdb;
+    }
+    .arrow-left {
+      left: 8px;
+    }
+    .arrow-right {
+      right: 8px;
+    }
+    /* Arrow SVG styling */
+    .arrow-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: #2d9cdb;
+      stroke-width: 3;
+      fill: none;
+    }
+    .arrow-btn:hover svg {
+      stroke: white;
+    }
+  </style>
 </head>
 <body>
   <nav>
@@ -15,28 +130,52 @@
 
   <main>
     <h1>Information & Updates</h1>
-    <p>Welcome! This is where we share updates, tips, and insights on QR codes, privacy, and how to get the most out of OpenQR.</p>
 
-    <section>
-      <article style="margin-top: 2rem;">
-        <h2>🚀 What Makes OpenQR Different?</h2>
-        <p>We don’t track you, we don’t store your data, and everything is generated right in your browser. That’s our commitment to privacy-first design.</p>
-      </article>
+    <div class="carousel-wrapper" aria-label="Information pages carousel">
+      <button class="arrow-btn arrow-left" aria-label="Scroll left">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
 
-      <article style="margin-top: 2rem;">
-        <h2>🧠 QR Code Use Cases</h2>
-        <ul>
-          <li>Menus, flyers, and business cards</li>
-          <li>Event check-ins</li>
-          <li>Anonymous sharing with no links back</li>
-        </ul>
-      </article>
+      <div class="carousel" tabindex="0">
+        <article class="tile" tabindex="0">
+          <h2>About OpenQR</h2>
+          <p>Discover who we are, what we do, and how we keep your privacy intact.</p>
+          <a href="/about.html">Learn More</a>
+        </article>
 
-      <article style="margin-top: 2rem;">
-        <h2>💡 Upcoming Features</h2>
-        <p>We’re planning support for wi-fi codes and more!.</p>
-      </article>
-    </section>
+        <article class="tile" tabindex="0">
+          <h2>Why We Built OpenQR</h2>
+          <p>Learn about the motivations behind creating a free, privacy-first QR code generator.</p>
+          <a href="/why.html">Learn More</a>
+        </article>
+
+        <!-- Add more tiles here as needed -->
+      </div>
+
+      <button class="arrow-btn arrow-right" aria-label="Scroll right">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
   </main>
+
+  <script>
+    const carousel = document.querySelector('.carousel');
+    const leftBtn = document.querySelector('.arrow-left');
+    const rightBtn = document.querySelector('.arrow-right');
+
+    const scrollAmount = 320 + 16; // tile width + gap approx
+
+    leftBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    rightBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+  </script>
 </body>
 </html>
