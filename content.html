@@ -64,7 +64,7 @@
       width: 100%;
       max-width: 1200px;
       margin-top: 6rem;
-      padding: 4rem 0 2rem; /* extra top padding */
+      padding: 4rem 0 2rem; /* top space to prevent clipping */
     }
 
     .carousel {
@@ -74,7 +74,7 @@
       scroll-snap-type: x mandatory;
       scroll-padding-left: 2rem;
       scroll-behavior: smooth;
-      gap: 3rem;
+      gap: 2rem;
       padding-left: 2rem;
       scrollbar-width: none;
     }
@@ -84,7 +84,8 @@
     }
 
     .tile {
-      flex: 0 0 500px;
+      flex: 0 0 40%;
+      max-width: 400px;
       height: 500px;
       scroll-snap-align: start;
       background: rgba(255, 255, 255, 0.85);
@@ -142,7 +143,7 @@
       height: 48px;
       border-radius: 50%;
       border: none;
-      background: rgba(255 255 255 / 0.8);
+      background: rgba(255, 255, 255, 0.8);
       box-shadow: 0 3px 8px rgba(0,0,0,0.1);
       cursor: pointer;
       transition: background 0.25s ease, opacity 0.25s ease;
@@ -228,7 +229,7 @@
     const carousel = document.querySelector('.carousel');
     const leftBtn = document.querySelector('.arrow-left');
     const rightBtn = document.querySelector('.arrow-right');
-    const scrollAmount = 500 + 48;
+    const scrollAmount = carousel.offsetWidth / 2;
 
     leftBtn.addEventListener('click', () => {
       carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
