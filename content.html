@@ -112,9 +112,11 @@
     .tile {
       flex: 0 0 320px;
       scroll-snap-align: start;
-      background: white;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: saturate(180%) blur(12px);
       border-radius: 32px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
       padding: 2rem 2.5rem;
       display: flex;
       flex-direction: column;
@@ -126,8 +128,8 @@
     }
     .tile:hover,
     .tile:focus-within {
-      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      transform: translateY(-6px);
       outline: none;
     }
 
