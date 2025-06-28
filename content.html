@@ -59,18 +59,18 @@
       color: #000;
     }
 
-    /* Carousel wrapper fills the full screen */
     .carousel-wrapper {
       position: relative;
       width: 100%;
       max-width: 1200px;
       margin-top: 6rem;
-      padding: 4rem 0;
+      padding: 4rem 0 2rem; /* extra top padding */
     }
 
     .carousel {
       display: flex;
       overflow-x: auto;
+      overflow-y: visible;
       scroll-snap-type: x mandatory;
       scroll-padding-left: 2rem;
       scroll-behavior: smooth;
@@ -85,6 +85,7 @@
 
     .tile {
       flex: 0 0 500px;
+      height: 500px;
       scroll-snap-align: start;
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: saturate(180%) blur(12px);
@@ -187,6 +188,7 @@
     @media (max-width: 600px) {
       .tile {
         flex: 0 0 90%;
+        height: auto;
         padding: 2rem;
       }
     }
