@@ -7,20 +7,85 @@
   <meta name="description" content="Learn more about OpenQR, our mission, and why we built this privacy-first QR code generator." />
   <link rel="stylesheet" href="style.css" />
   <style>
+    /* Base reset for box sizing */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      background: #f5f5f7;
+      color: #1d1d1f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+    }
+
+    nav {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      display: flex;
+      gap: 0.75rem;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      padding: 0.5rem 1.25rem;
+      background-color: #f0f0f5;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      color: #333;
+      text-decoration: none;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      transition: background-color 0.25s ease;
+      font-weight: 600;
+    }
+    nav a:hover,
+    nav a.active {
+      background-color: #d6d6db;
+      color: #000;
+    }
+
+    main {
+      width: 100%;
+      max-width: 960px;
+      padding-top: 3rem;
+    }
+
+    h1 {
+      font-weight: 700;
+      font-size: 2.25rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: #1d1d1f;
+    }
+
     /* Carousel container */
     .carousel-wrapper {
       position: relative;
-      max-width: 480px;
-      margin: 2rem auto;
       overflow: hidden;
+      padding: 1rem 0;
+      /* subtle inset shadow like Apple */
+      box-shadow: inset 0 0 12px rgba(0,0,0,0.05);
+      border-radius: 24px;
+      background: #fff;
     }
 
-    /* Tile container - horizontal scroll */
+    /* Carousel track with snap */
     .carousel {
       display: flex;
-      gap: 1rem;
       overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-left: 2rem;
       scroll-behavior: smooth;
+      gap: 2rem;
+      padding-left: 2rem;
       padding-bottom: 1rem;
       scrollbar-width: none; /* Firefox */
     }
@@ -28,54 +93,57 @@
       display: none; /* Chrome/Safari */
     }
 
-    /* Tile styling */
+    /* Each tile */
     .tile {
       flex: 0 0 320px;
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      padding: 1.5rem 2rem;
+      scroll-snap-align: start;
+      background: white;
+      border-radius: 32px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      padding: 2rem 2.5rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                  box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       user-select: none;
-      scroll-snap-align: start;
-      transition: box-shadow 0.3s ease;
     }
-    .tile:hover, .tile:focus-within {
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-    }
-    .tile h2 {
-      margin-top: 0;
-      font-weight: 600;
-      font-size: 1.3rem;
-      color: #111;
-    }
-    .tile p {
-      flex-grow: 1;
-      margin: 1rem 0 1.5rem 0;
-      color: #444;
-      line-height: 1.4;
-    }
-    .tile a {
-      align-self: flex-start;
-      padding: 0.5rem 1rem;
-      background: #2d9cdb;
-      color: white;
-      border-radius: 9999px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-decoration: none;
-      transition: background 0.3s ease;
-    }
-    .tile a:hover, .tile a:focus {
-      background: #1c82c1;
+    .tile:hover,
+    .tile:focus-within {
+      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+      transform: translateY(-8px);
       outline: none;
     }
 
-    /* Scroll snap container */
-    .carousel-wrapper {
-      scroll-snap-type: x mandatory;
+    .tile h2 {
+      font-weight: 700;
+      font-size: 1.6rem;
+      margin: 0 0 1rem 0;
+      color: #1d1d1f;
+    }
+
+    .tile p {
+      flex-grow: 1;
+      color: #6e6e73;
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 2rem;
+    }
+
+    .tile a {
+      align-self: flex-start;
+      text-decoration: none;
+      color: #0071e3;
+      font-weight: 600;
+      font-size: 1rem;
+      border-bottom: 1.5px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+    .tile a:hover,
+    .tile a:focus {
+      border-color: #0071e3;
+      outline: none;
     }
 
     /* Arrow buttons */
@@ -83,42 +151,63 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(255 255 255 / 0.85);
-      border: none;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      border: none;
+      background: rgba(255 255 255 / 0.8);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
       cursor: pointer;
-      transition: background 0.2s ease;
+      transition: background 0.25s ease, opacity 0.25s ease;
       display: flex;
       align-items: center;
       justify-content: center;
       user-select: none;
-      z-index: 5;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 10;
     }
-    .arrow-btn:hover {
-      background: rgba(45,156,219,0.9);
+    .arrow-btn svg {
+      width: 20px;
+      height: 20px;
+      stroke: #0071e3;
+      stroke-width: 3;
+      fill: none;
+      transition: stroke 0.25s ease;
     }
+    .arrow-btn:hover,
     .arrow-btn:focus {
-      outline: 2px solid #2d9cdb;
+      background: #0071e3;
+      outline: none;
     }
+    .arrow-btn:hover svg,
+    .arrow-btn:focus svg {
+      stroke: white;
+    }
+
     .arrow-left {
       left: 8px;
     }
     .arrow-right {
       right: 8px;
     }
-    /* Arrow SVG styling */
-    .arrow-btn svg {
-      width: 18px;
-      height: 18px;
-      stroke: #2d9cdb;
-      stroke-width: 3;
-      fill: none;
+
+    /* Show arrows on carousel hover */
+    .carousel-wrapper:hover .arrow-btn,
+    .carousel-wrapper:focus-within .arrow-btn {
+      opacity: 1;
+      pointer-events: auto;
     }
-    .arrow-btn:hover svg {
-      stroke: white;
+
+    /* Responsive */
+    @media (max-width: 400px) {
+      .tile {
+        flex: 0 0 280px;
+        padding: 1.5rem 1.75rem;
+      }
+      main {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
@@ -167,7 +256,7 @@
     const leftBtn = document.querySelector('.arrow-left');
     const rightBtn = document.querySelector('.arrow-right');
 
-    const scrollAmount = 320 + 16; // tile width + gap approx
+    const scrollAmount = 320 + 32; // tile width + gap
 
     leftBtn.addEventListener('click', () => {
       carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
