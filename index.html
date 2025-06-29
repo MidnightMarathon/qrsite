@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -47,12 +46,12 @@
   <!-- Main stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
   <nav>
     <a href="/" aria-label="OpenQR Free QR Code Generator Home" class="active">OpenQR Home</a>
-    <a href="/content.html" aria-label="Information about how to use OpenQR and QR code tips">Learn more about OpenQR</a>
+    <a href="/content.html" aria-label="Learn more about OpenQR">Learn more about OpenQR</a>
   </nav>
+
   <main>
     <h1>Free QR Code Generator – OpenQR</h1>
     <p>Create QR codes instantly. No watermark. No signup required.</p>
@@ -81,24 +80,15 @@
     </section>
   </main>
 
-  <footer style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 12px; color: #888; text-align: center; padding: 2rem 1rem; border-top: 1px solid #e1e1e1; line-height: 1.6; max-width: 600px; margin: 4rem auto 2rem auto;">
+  <footer>
     <p><strong>OpenQR</strong> is a free and privacy-first QR code generator.</p>
     <p>We do not store your data, use cookies, or track you.</p>
     <p>All generation happens in your browser.</p>
     <p>
-      Built with ❤️ using
-      <a href="https://github.com/kozakdenys/qr-code-styling" target="_blank" rel="noopener noreferrer" style="color:#888; text-decoration: underline;">qr-code-styling</a> (MIT License).
+      Built with ❤️ using <a href="https://github.com/kozakdenys/qr-code-styling" target="_blank" rel="noopener noreferrer">qr-code-styling</a> (MIT License).
     </p>
   </footer>
 
-  <!-- Analytics script async -->
-  <script async src="https://cdn.counter.dev/script.js" data-id="7270757a-f9e8-4c07-811c-e7d78fb64b92" data-utcoffset="-6"></script>
-
-  <!-- QR code library deferred -->
-  <script defer src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
-
-  <!-- Your main JS deferred -->
-  <script defer src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
-
 </html>
