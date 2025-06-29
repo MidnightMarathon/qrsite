@@ -1,4 +1,4 @@
-/* Apple-style pill navigation in top-left */
+/* Apple-style pill navigation */
 nav {
   position: absolute;
   top: 1rem;
@@ -7,27 +7,21 @@ nav {
   gap: 0.5rem;
   z-index: 10;
   animation: fadeIn 0.8s ease-out both;
-  background-color: transparent !important;  /* fully transparent */
-  padding: 0;
-  margin: 0;
-  box-shadow: none !important;  /* remove any shadow */
-  border: none !important;      /* remove any border */
 }
 
 /* Base nav link styling */
 nav a {
   display: inline-block;
   padding: 0.4rem 1rem;
-  background-color: #f9f9f9;
+  background-color: transparent;
   border-radius: 9999px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 0.85rem;
   color: #333;
-  text-decoration: none;  /* no underline */
+  text-decoration: none;
   transition: all 0.2s ease;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  border-bottom: none !important;  /* explicitly no bottom border */
 }
 
 /* Hover state */
@@ -35,22 +29,19 @@ nav a:hover {
   background-color: #eaeaea;
   border-color: rgba(0, 0, 0, 0.15);
   text-decoration: none;
-  border-bottom: none !important;
 }
 
 /* Focus (keyboard/tab) state */
 nav a:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(45, 156, 219, 0.4);
-  border-bottom: none !important;
 }
 
-/* Active link (for current page) */
+/* Active link (if used manually) */
 nav a.active {
-  background-color: #d0d0d5;
   font-weight: 600;
   border-color: rgba(0, 0, 0, 0.2);
-  border-bottom: none !important;
+  background-color: transparent;
 }
 
 /* Fade-in animation */
@@ -65,11 +56,11 @@ nav a.active {
   }
 }
 
-/* Base styles */
+/* Body & background */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background: linear-gradient(135deg, #b388eb, #8fd3f4, #f093fb); /* macOS Monterey vibe */
+  background: linear-gradient(135deg, #b388eb, #8fd3f4, #f093fb);
   background-size: 300% 300%;
   animation: gradientFlow 15s ease infinite;
   color: #1d1d1f;
@@ -81,26 +72,26 @@ body {
   min-height: 100vh;
 }
 
-/* Wrap input and button, center button */
+/* Input + Button wrapper */
 .input-group {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem; /* spacing between input and button */
+  gap: 0.75rem;
 }
 
 .input-group input#qr-input {
   width: 100%;
-  max-width: 100%; /* keep full width */
+  max-width: 100%;
 }
 
 .input-group button#generate-btn {
   width: auto;
-  min-width: 160px; /* optional, consistent button width */
-  align-self: center; /* centers button horizontally */
+  min-width: 160px;
+  align-self: center;
 }
 
-/* Main container */
+/* Main card container */
 main {
   max-width: 440px;
   margin: auto;
@@ -110,7 +101,7 @@ main {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
 }
 
-/* Input */
+/* Input styling */
 input#qr-input {
   padding: 0.75rem 1rem;
   font-size: 1rem;
@@ -126,7 +117,7 @@ input#qr-input:focus {
   outline: none;
 }
 
-/* Button */
+/* Button styling */
 button#generate-btn {
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
@@ -190,7 +181,7 @@ button#generate-btn:hover {
   cursor: pointer;
 }
 
-/* Download link */
+/* Download button */
 a#download-link {
   display: inline-block;
   padding: 0.5rem 1.25rem;
@@ -205,9 +196,10 @@ a#download-link {
 
 a#download-link:hover {
   background: #219150;
+  text-decoration: none;
 }
 
-/* Animation for background */
+/* Animated gradient background */
 @keyframes gradientFlow {
   0% {
     background-position: 0% 50%;
@@ -218,4 +210,17 @@ a#download-link:hover {
   100% {
     background-position: 0% 50%;
   }
+}
+
+/* Footer (optional styling if desired) */
+footer {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 12px;
+  color: #888;
+  text-align: center;
+  padding: 2rem 1rem;
+  border-top: 1px solid #e1e1e1;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 4rem auto 2rem auto;
 }
