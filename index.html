@@ -83,6 +83,86 @@
   <!-- QRCodeStyling CDN (deferred to eliminate render-blocking) -->
   <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js" defer></script>
 
+  <!-- Critical CSS: inlined for faster initial render -->
+  <style>
+    /* Critical CSS: styles for above-the-fold content */
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #222;
+      background-color: #fff;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem;
+      background: #f8f8f8;
+      border-bottom: 1px solid #e1e1e1;
+    }
+
+    nav a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      text-decoration: underline;
+    }
+
+    main {
+      max-width: 600px;
+      margin: 2rem auto 0 auto;
+      padding: 0 1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1.125rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    #qr-input {
+      flex-grow: 1;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    #generate-btn {
+      background-color: #0078d7;
+      color: white;
+      border: none;
+      padding: 0 1rem;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #generate-btn:hover,
+    #generate-btn:focus {
+      background-color: #005a9e;
+    }
+
+    .error-message {
+      color: #d9534f;
+      font-weight: 600;
+    }
+  </style>
+
   <!-- Main stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -94,7 +174,7 @@
   <main>
     <h1>Free QR Code Generator – OpenQR</h1>
     <p>Create QR codes instantly. No watermark. No signup required.</p>
-    
+
     <section class="qr-tile">
       <div class="input-group">
         <input id="qr-input" type="text" placeholder="https://example.com" aria-label="Enter the URL to generate QR code" />
