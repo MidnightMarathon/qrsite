@@ -7,41 +7,42 @@ nav {
   gap: 0.5rem;
   z-index: 10;
   animation: fadeIn 0.8s ease-out both;
+  background: none; /* No background box */
 }
 
-/* Base nav link styling */
+/* Pill links: stay white, subtle shadow */
 nav a {
   display: inline-block;
   padding: 0.4rem 1rem;
-  background-color: transparent;
+  background-color: #ffffff; /* White pill */
   border-radius: 9999px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 0.85rem;
   color: #333;
   text-decoration: none;
   transition: all 0.2s ease;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
-/* Hover state */
+/* Hover state: temporary shading only */
 nav a:hover {
-  background-color: #eaeaea;
+  background-color: #f2f2f2;
   border-color: rgba(0, 0, 0, 0.15);
-  text-decoration: none;
+  text-decoration: none; /* No underline */
 }
 
-/* Focus (keyboard/tab) state */
+/* Focus for accessibility */
 nav a:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(45, 156, 219, 0.4);
 }
 
-/* Active link (if used manually) */
+/* Active link: no background change */
 nav a.active {
   font-weight: 600;
+  background-color: #ffffff;
   border-color: rgba(0, 0, 0, 0.2);
-  background-color: transparent;
 }
 
 /* Fade-in animation */
@@ -212,7 +213,7 @@ a#download-link:hover {
   }
 }
 
-/* Footer (optional styling if desired) */
+/* Footer */
 footer {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 12px;
