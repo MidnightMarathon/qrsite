@@ -3,26 +3,161 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About OpenQR</title>
-  <meta name="description" content="About OpenQR - a free, privacy-first QR code generator designed to protect your data." />
+  <title>About & No Watermark | OpenQR</title>
+  <meta name="description" content="Learn why OpenQR doesn’t add watermarks, accounts, or tracking. Clean, private, and free QR code generator." />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      background: linear-gradient(135deg, #b388eb, #8fd3f4, #f093fb);
+      background-size: 300% 300%;
+      animation: gradientFlow 15s ease infinite;
+      color: #1d1d1f;
+      padding: 2rem;
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    nav {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      display: flex;
+      gap: 0.75rem;
+      z-index: 10;
+    }
+
+    nav a {
+      display: inline-block;
+      padding: 0.5rem 1.25rem;
+      background-color: #f0f0f5;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      color: #333;
+      text-decoration: none;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      transition: background-color 0.25s ease;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      background-color: #d6d6db;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 8rem auto 4rem;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: saturate(180%) blur(16px);
+      border-radius: 24px;
+      padding: 3rem;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #444;
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      padding-left: 1.25rem;
+      color: #444;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      margin-bottom: 1rem;
+    }
+
+    li p:first-child {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    a {
+      color: #0057cc;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 2rem;
+        margin: 6rem 1rem 3rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <nav>
-    <a href="/" >Home</a>
-    <a href="/content.html">Information</a>
-    <a href="/about.html" class="active">About</a>
+    <a href="/">Home</a>
+    <a href="/why.html">Why</a>
+    <a href="/about.html" aria-current="page">About</a>
   </nav>
 
   <main>
-    <h1>About OpenQR</h1>
+    <h1>About & No Watermark</h1>
 
-    <section>
-      <article>
-        <p>OpenQR is a free, open source QR code generator that respects your privacy. We do not store any data or track usage — everything happens locally in your browser.</p>
-        <p>Our goal is to provide a simple, secure way for anyone to create QR codes without compromising privacy or dealing with annoying signups and watermarks.</p>
-      </article>
-    </section>
+    <p>Some QR code generators add a watermark or require sign-up. This one doesn’t. It runs in the browser, doesn’t track anything, and doesn’t add branding.</p>
+
+    <p>You can use it to make QR codes for URLs, plain text, and a few other formats. Everything stays local. Nothing gets uploaded or stored.</p>
+
+    <p>No logos. No accounts. Just clean QR codes.</p>
+
+    <h2>Why No Watermark?</h2>
+
+    <p>Watermarks take up space, distract from the content, and can make scanning less reliable. They’re not helpful if you just want to generate a code and use it however you want.</p>
+
+    <p>This tool leaves them out on purpose.</p>
+
+    <h2>FAQ</h2>
+    <ul>
+      <li>
+        <p>Do I need to create an account?</p>
+        <p>No.</p>
+      </li>
+      <li>
+        <p>Is there a limit to how many QR codes I can make?</p>
+        <p>No.</p>
+      </li>
+      <li>
+        <p>Can I use the QR codes commercially?</p>
+        <p>Yes.</p>
+      </li>
+      <li>
+        <p>Are analytics or tracking used?</p>
+        <p>No. The generator runs in your browser and doesn’t send data anywhere.</p>
+      </li>
+      <li>
+        <p>Is this open source?</p>
+        <p>Yes. You can view or fork the code <a href="https://github.com/MidnightMarathon/qrsite" target="_blank" rel="noopener noreferrer">on GitHub</a>.</p>
+      </li>
+    </ul>
   </main>
 </body>
 </html>
